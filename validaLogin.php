@@ -9,7 +9,7 @@ if ($btnLogin) { //se o botão for acionado...
 
     if ((!empty($email)) and (!empty($senha))) {
         //************* QUERY de pesquisa de usuário *****************
-        $result_usuario = "SELECT id, nome, email, senha from usuarios where email = '$email' LIMIT 1";
+        $result_usuario = "SELECT id, nome, email, senha from cad_cuidador where email = '$email' LIMIT 1";
         $resultado = mysqli_query($conn, $result_usuario);
         //echo password_hash($senha, PASSWORD_DEFAULT);
 

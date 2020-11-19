@@ -26,7 +26,7 @@ session_start();
             </a>
         </header>
 
-        <form method="POST" action="valida.php">
+        <form method="POST" action="validaLogin.php">
             <h1>Login</h1>
             <fieldset>
                 <?php
@@ -47,7 +47,7 @@ session_start();
                 </div>
             </fieldset>
             
-            <p class = "sublink">Ainda não é cadastrado? <a href="cadPro.php">Clique aqui</a>.</p>
+            <p class = "sublink">Ainda não é cadastrado? <a href="escolhaCad.php">Clique aqui</a>.</p>
             <p class="sublink">Esqueceu sua senha? <a href="#">Clique aqui</a>.</p>
             <input class="button" name="btnLogin" type="submit" value="Entrar"></input>
         </form>
