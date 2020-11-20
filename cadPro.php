@@ -2,50 +2,60 @@
 session_start();
 ob_start();
 $btnCadastro = filter_input(INPUT_POST, 'btnCadastro', FILTER_SANITIZE_STRING);
+
 if ($btnCadastro) {
     include_once 'conexao.php';
     $dados = filter_input_array(INPUT_POST, FILTER_DEFAULT);
-    //var_dump($dados); //mostra o array criado
     $dados['senha'] = password_hash($dados['senha'], PASSWORD_DEFAULT);
+    //DADOS INPUTADOS PELO JS e RADIO
+    $cep = filter_input(INPUT_POST, 'cep', FILTER_SANITIZE_NUMBER_INT);
+    $rua = $_POST['rua'];
+    $bairro = $_POST['bairro'];
+    $uf = $_POST['uf'];
+    $cidade = filter_input(INPUT_POST, 'cidade', FILTER_SANITIZE_STRING);
+    $numero = $_POST['numero'];
+    $comp = $_POST['comp'];
+    $sexo_dados = filter_input(INPUT_POST, 'sexo', FILTER_SANITIZE_STRING);
+    
     $result_usuario =
-        "INSERT INTO  usuarios(
+        "INSERT INTO  cad_cuidador(
         nome,
         sobrenome, 
         cpf, 
-        rg, 
+        sexo,
         email, 
         senha, 
-        telefone, 
-        cep, 
-        endereco, 
-        bairro, 
-        cidade, 
-        estado, 
-        numero, 
-        complemento, 
+        telefone,
+        cep,
+        rua,
+        bairro,
+        cidade,
+        uf,
+        numero,
+        comp,
         created) VALUES(
         '" . $dados['nome'] . "',
         '" . $dados['sobrenome'] . "', 
         '" . $dados['cpf'] . "',
-        '" . $dados['rg'] . "',
+        '$sexo_dados',
         '" . $dados['email'] . "',
         '" . $dados['senha'] . "',
         '" . $dados['telefone'] . "',
-        '" . $dados['cep'] . "',
-        '" . $dados['rua'] . "',
-        '" . $dados['bairro'] . "',
-        '" . $dados['cidade'] . "',
-        '" . $dados['uf'] . "',
-        '" . $dados['numero'] . "',
-        '" . $dados['complemento'] . "',
+        '$cep',
+        '$rua',
+        '$bairro',
+        '$cidade',
+        '$uf',
+        '$numero',
+        '$comp',
         now())";
 
     $resultado = mysqli_query($conn, $result_usuario);
+    
     if (mysqli_insert_id($conn)) {
-        $_SESSION['msgCad'] =  "<script>window.alert('usuário cadastrado com sucesso')</script><p style='var(--title-color)> Usuário Cadastrado </p>";
-        header("Location: index.html");
+        header("Location: cadSucess.php");
     } else {
-        $_SESSION['msg'] =  " <p style='color: red; margin-top:20px; margin-bottom: -30px'>Erro ao cadastrar o usuário</p>";
+        $_SESSION['msg'] =  " <p style='color: red; margin-top:20px; margin-bottom: -30px'>Erro ao cadastrar o usuário! Preencha todos os campos.</p>";
     }
 }
 ?>
@@ -105,26 +115,26 @@ if ($btnCadastro) {
 
                 <div class="field-group">
                     <div class="field">
-                        <label for="name">Nome *</label>
-                        <input type="text" name="nome" maxlength="40" placeholder="Insira seu nome">
+                        <label for="nome">Nome *</label>
+                        <input type="text" name="nome" maxlength="40" placeholder="Insira seu nome" required>
                     </div>
 
                     <div class="field">
-                        <label for="name">Sobrenome *</label>
-                        <input type="text" name="sobrenome" maxlength="40" placeholder="Insira seu sobrenome">
+                        <label for="sobrenome">Sobrenome *</label>
+                        <input type="text" name="sobrenome" maxlength="40" placeholder="Insira seu sobrenome" required>
                     </div>
                 </div>
 
                 <div class="field">
                     <label for="email">E-mail *</label>
-                    <input type="text" name="email" maxlength="50" placeholder="Insira seu melhor e-mail">
+                    <input type="text" name="email" maxlength="50" placeholder="Insira seu melhor e-mail" required>
                 </div>
 
                 <div class="field">
                     <label for="sexo">Sexo *</label>
                     <div class="cntr">
 
-                        <label for="opt1" class="radio">
+                        <label for="opt1" class="radio" required>
                             <input type="radio" name="sexo" id="opt1" class="hidden" value="M" />
                             <span class="label"></span>Masculino
                         </label>
@@ -145,110 +155,29 @@ if ($btnCadastro) {
                         </label>
                     </div>
                 </div>
-                <div class="field">
-                    <label for="whatsapp">Tel. Whatsapp (DDD)+(Tel.) *</label>
-                    <input type="text" name="telefone" maxlength="50" placeholder="Insira o seu número de WhatsApp">
-                </div>
-
                 <div class="field-group">
                     <div class="field">
-                        <label for="CPF">CPF (somente números) *</label>
-                        <input type="text" name="cpf" placeholder="Insira seu CPF">
+                        <label for="whatsapp">Tel. Whatsapp (DDD)+(Tel.) *</label>
+                        <input type="text" name="telefone" maxlength="50" placeholder="Insira o seu número de WhatsApp" required>
                     </div>
 
                     <div class="field">
-                        <label for="RG">RG (somente números) *</label>
-                        <input type="text" name="rg" placeholder="Insira seu número de documento">
+                        <label for="CPF">CPF (somente números) *</label>
+                        <input type="text" name="cpf" placeholder="Insira seu CPF" required>
                     </div>
                 </div>
 
                 <div class="field-group">
                     <div class="field">
                         <label for="senha">Digite sua senha *</label>
-                        <input type="password" name="senha" placeholder="Insira uma senha">
+                        <input type="password" name="senha" placeholder="Insira uma senha" required>
                     </div>
 
                     <div class="field">
                         <label for="senha_confirma">Digite sua senha novamente *</label>
-                        <input type="password" name="senha_confirma" placeholder="Insira sua senha novamente">
+                        <input type="password" name="senha_confirma" placeholder="Insira sua senha novamente" required>
                     </div>
                 </div>
-            </fieldset>
-
-            <!--FORMULÁRIO DE CADASTRO - DADOS DO PROFISSIONAL-->
-            <fieldset>
-                <legend>
-                    <h2>Dados Profissionais</h2>
-                    <h6>Aviso: Esses dados estarão dispostos a revisão.</h6>
-                </legend>
-
-                <label for="sexo">Possui experiência profissional na área de cuidados ou saúde? *</label>
-                <div class="field">
-                    
-                        <label for="exp1" class="radio">
-                            <input type="radio" name="exp" id="exp1" class="hidden" value="S" />
-                            <span class="label"></span>Sim, possuo experiência na área.
-                        </label>
-
-                        <label for="exp2" class="radio">
-                            <input type="radio" name="exp" id="exp2" class="hidden" value="N" />
-                            <span class="label"></span>Não possuo experiência.
-                        </label>
-                    
-                </div>
- <!--
-                <div class="field">
-                    <label for="formacao">Se sim, conte-nos!</label>
-                    <textarea placeholder="Conte-nos sua experiência"></textarea>
-                </div> -->
-
-                <label for="sexo">Possui formação profissional na área de cuidados ou saúde? *</label>
-                <div class="field">
-                    
-                        <label for="form1" class="radio">
-                            <input type="radio" name="formacao" id="form1" class="hidden" value="S" />
-                            <span class="label"></span>Sim, possuo formação profissional na área.
-                        </label>
-
-                        <label for="form2" class="radio">
-                            <input type="radio" name="formacao" id="form2" class="hidden" value="N" />
-                            <span class="label"></span>Não possuo formação profissional.
-                        </label>
-                    
-                </div>
-
-                <div class="field">
-                    <label for="formacao">Escolha suas especialidades *</label>
-                    <div class="field-check">
-                        <div class="check">
-                            <input type="checkbox" name="especs" valor="I" id="check1">
-                            <label for="check1">Cuidador de idosos</label>
-                        </div>
-
-                        <div class="check">
-                            <input type="checkbox" name="especs" valor="C" id="check2">
-                            <label for="check2">Cuidador de crianças</label>
-                        </div>
-
-                        <div class="check">
-                            <input type="checkbox" name="especs" valor="F" id="check3">
-                            <label for="check3">Tratamento de feridos</label>
-                        </div>
-
-                        <div class="check">
-                            <input type="checkbox" name="especs" valor="e" id="check4">
-                            <label for="check4">Cuidador de PNE's (Pessoas com Necessidades Especiais)</label>
-                        </div>
-
-                        <div class="check">
-                            <input type="checkbox" name="especs" valor="e" id="check5">
-                            <label for="check5">Cuidador de PcD's (Pessoas com Deficiências)</label>
-                        </div>
-                    </div>
-
-
-                </div>
-
             </fieldset>
 
             <fieldset>
@@ -260,30 +189,30 @@ if ($btnCadastro) {
 
                 <div class="field">
                     <label for="cep">CEP *</label>
-                    <input name="cep" type="text" id="cep" placeholder="Insira o seu número de CEP" maxlength="9" onblur="pesquisacep(this.value);" /></label>
+                    <input name="cep" type="text" id="cep" placeholder="Insira o seu número de CEP" maxlength="9" onblur="pesquisacep(this.value);" required /></label>
                 </div>
 
                 <div class="field">
                     <label>Rua *</label>
-                    <input name="rua" type="text" id="rua" placeholder="Insira o nome da sua rua" />
+                    <input name="rua" type="text" id="rua" placeholder="Insira o nome da sua rua" required />
                 </div>
 
                 <div class="field-group">
                     <div class="field">
                         <label>Bairro *</label>
-                        <input name="bairro" type="text" id="bairro" placeholder="Insira o nome do seu bairro" />
+                        <input name="bairro" type="text" id="bairro" placeholder="Insira o nome do seu bairro" required />
                     </div>
 
                     <div class="field">
                         <label>Cidade *</label>
-                        <input name="cidade" type="text" id="cidade" placeholder="Insira o nome da sua cidade" />
+                        <input name="cidade" type="text" id="cidade" placeholder="Insira o nome da sua cidade" required />
                     </div>
                 </div>
 
                 <div class="field-group">
                     <div class="field">
                         <label>Estado *</label>
-                        <input name="uf" type="text" id="uf" placeholder="Insira sua UF" maxlength="2" />
+                        <input name="uf" type="text" id="uf" placeholder="Insira sua UF" maxlength="2" required />
                     </div>
 
                     <div class="field">
@@ -295,12 +224,11 @@ if ($btnCadastro) {
 
                 <div class="field">
                     <label>Complemento</label>
-                    <input name="complemento" type="text" id="complemento" placeholder="Ex.: Apto. Nº5, Bloco 2">
+                    <input name="comp" type="text" id="complemento" placeholder="Ex.: Apto. Nº5, Bloco 2">
                 </div>
 
                 <p class="sublink">Já é cadastrado? <a href="loginPro.php">Clique aqui</a>.</p>
-                <!--   <button type="submit">Cadastrar-se</button><br><br>-->
-                <input class="button" name="btnCadastro" type="submit" value="Cadastrar"></input><br><br>
+                <input class="button" name="btnCadastro" type="submit" value="Cadastrar-se"></input><br><br>
 
                 <h6>
                     Ao clicar em “Cadastrar-se”, você aceita os Termos de Uso da Anjos da Guarda e confirma que leu a Política de Privacidade. Você também concorda em receber mensagens em seu e-mail, inclusive automáticas, provenientes da companhia e de suas afiliadas para fins informativos e/ou de marketing, no número que informou. A aceitação do recebimento de mensagens de marketing não é condição para usar os serviços da Anjos da Guarda. Você compreende que, para cancelar o recebimento, pode cancelá-los via e-mail.

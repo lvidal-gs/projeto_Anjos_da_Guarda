@@ -6,7 +6,7 @@ if ($btnCadastro) {
     include_once 'conexao.php';
     $dados = filter_input_array(INPUT_POST, FILTER_DEFAULT);
     //var_dump($dados); //mostra o array criado
-    $sexo_dados = filter_input(INPUT_POST, 'sexo',FILTER_SANITIZE_STRING);
+    $sexo_dados = filter_input(INPUT_POST, 'sexo', FILTER_SANITIZE_STRING);
     $dados['senha'] = password_hash($dados['senha'], PASSWORD_DEFAULT);
     $result_usuario =
         "INSERT INTO  cad_cliente(
@@ -18,7 +18,7 @@ if ($btnCadastro) {
         senha, 
         telefone, 
         created) VALUES(
-        '" . $dados['nume'] . "',
+        '" . $dados['nome'] . "',
         '" . $dados['sobrenome'] . "', 
         '" . $dados['cpf'] . "',
         '$sexo_dados',
@@ -31,7 +31,7 @@ if ($btnCadastro) {
     if (mysqli_insert_id($conn)) {
         header("Location: cadSucess.php");
     } else {
-        $_SESSION['msg'] =  " <p style='color: red; margin-top:20px; margin-bottom: -30px'>Erro ao cadastrar o usuário</p>";
+        $_SESSION['msg'] =  " <p style='color: red; margin-top:20px; margin-bottom: -30px'>Erro ao cadastrar o usuário! Preencha todos os campos.</p>";
     }
 }
 ?>
@@ -91,77 +91,77 @@ if ($btnCadastro) {
 
                 <div class="field-group">
                     <div class="field">
-                        <label for="nume">Nome *</label>
-                        <input type="text" name="nume" maxlength="40" placeholder="Insira seu nome">
+                        <label for="nome">Nome *</label>
+                        <input type="text" name="nome" maxlength="40" placeholder="Insira seu nome" required>
                     </div>
 
                     <div class="field">
                         <label for="sobrenome">Sobrenome *</label>
-                        <input type="text" name="sobrenome" maxlength="40" placeholder="Insira seu sobrenome">
+                        <input type="text" name="sobrenome" maxlength="40" placeholder="Insira seu sobrenome" required>
                     </div>
                 </div>
 
                 <div class="field">
                     <label for="email">E-mail *</label>
-                    <input type="text" name="email" maxlength="50" placeholder="Insira seu melhor e-mail">
+                    <input type="text" name="email" maxlength="50" placeholder="Insira seu melhor e-mail" required>
                 </div>
 
                 <div class="field">
                     <label for="sexo">Sexo *</label>
                     <div class="cntr">
 
-                        <label for="opt1" class="radio">
-                            <input type="radio" name="sexo" id="opt1" class="hidden" value="masculino" />
+                        <label for="opt1" class="radio" required>
+                            <input type="radio" name="sexo" id="opt1" class="hidden" value="M" />
                             <span class="label"></span>Masculino
                         </label>
 
                         <label for="opt2" class="radio">
-                            <input type="radio" name="sexo" id="opt2" class="hidden" value="feminino" />
+                            <input type="radio" name="sexo" id="opt2" class="hidden" value="F" />
                             <span class="label"></span>Feminino
                         </label>
 
                         <label for="opt3" class="radio">
-                            <input type="radio" name="sexo" id="opt3" class="hidden" value="outro" />
+                            <input type="radio" name="sexo" id="opt3" class="hidden" value="O" />
                             <span class="label"></span>Outro
                         </label>
 
                         <label for="opt4" class="radio">
-                            <input type="radio" name="sexo" id="opt4" class="hidden" value="naodeclarado" />
+                            <input type="radio" name="sexo" id="opt4" class="hidden" value="U" />
                             <span class="label"></span>Prefiro não declarar
                         </label>
                     </div>
                 </div>
-                <div class="field">
-                    <label for="whatsapp">Tel. Whatsapp (DDD)+(Tel.) *</label>
-                    <input type="text" name="telefone" maxlength="50" placeholder="Insira o seu número de WhatsApp">
-                </div>
-
                 <div class="field-group">
                     <div class="field">
+                        <label for="whatsapp">Tel. Whatsapp (DDD)+(Tel.) *</label>
+                        <input type="text" name="telefone" maxlength="50" placeholder="Insira o seu número de WhatsApp" required>
+                    </div>
+
+                    <div class="field">
                         <label for="CPF">CPF (somente números) *</label>
-                        <input type="text" name="cpf" placeholder="Insira seu CPF">
+                        <input type="text" name="cpf" placeholder="Insira seu CPF" onblur="validarCPF(cpf);" required  required>
                     </div>
                 </div>
 
                 <div class="field-group">
                     <div class="field">
                         <label for="senha">Digite sua senha *</label>
-                        <input type="password" name="senha" placeholder="Insira uma senha">
+                        <input type="password" name="senha" placeholder="Insira uma senha" required>
                     </div>
 
                     <div class="field">
                         <label for="senha_confirma">Digite sua senha novamente *</label>
-                        <input type="password" name="senha_confirma" placeholder="Insira sua senha novamente">
+                        <input type="password" name="senha_confirma" placeholder="Insira sua senha novamente" required>
                     </div>
                 </div>
             </fieldset>
 
-                <p class="sublink">Já é cadastrado? <a href="loginPro.php">Clique aqui</a>.</p>
-                <input class="button" name="btnCadastro" type="submit" value="Cadastrar-se"></input><br><br>
+            <p class="sublink">Já é cadastrado? <a href="loginPro.php">Clique aqui</a>.</p>
+            <input class="button" name="btnCadastro" type="submit" value="Cadastrar-se"></input><br><br>
 
-                <h6>
-                    Ao clicar em “Cadastrar-se”, você aceita os Termos de Uso da Anjos da Guarda e confirma que leu a Política de Privacidade. Você também concorda em receber mensagens em seu e-mail, inclusive automáticas, provenientes da companhia e de suas afiliadas para fins informativos e/ou de marketing, no número que informou. A aceitação do recebimento de mensagens de marketing não é condição para usar os serviços da Anjos da Guarda. Você compreende que, para cancelar o recebimento, pode cancelá-los via e-mail.
-                </h6>
+            <h6>
+                Ao clicar em “Cadastrar-se”, você aceita os Termos de Uso da Anjos da Guarda e confirma que leu a Política de Privacidade. Você também concorda em receber mensagens em seu e-mail, inclusive automáticas, provenientes da companhia e de suas afiliadas para fins informativos e/ou de marketing, no número que informou. A aceitação do recebimento de mensagens de marketing não é condição para usar os serviços da Anjos da Guarda. Você compreende que, para cancelar o recebimento, pode cancelá-los via e-mail.
+            </h6>
 
     </div>
     </fieldset>
@@ -169,6 +169,4 @@ if ($btnCadastro) {
 
     </form>
 </body>
-</div>
-
 </html>
