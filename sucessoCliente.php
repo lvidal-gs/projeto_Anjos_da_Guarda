@@ -25,11 +25,11 @@
     <div id="cad-pro">
         <header>
 
-            <a href="index.html">
+            <a href="index.php">
                 <img src="img/anjos_da_guarda_logo_sf.png" width="225px">
             </a>
 
-            <a href="index.html">
+            <a href="index.php">
                 <img src="img/arrow.svg" alt="" height="12px" collor="#2274a5">
                 Voltar para home
             </a>
@@ -41,11 +41,13 @@
             <h1>Cadastro realizado!</h1><br>
 
             <div class="alert alert-primary" role="alert">
-                Seu cadastro foi efetuado com sucesso. Verifique seu e-mail e confirme seu cadastro agora mesmo!
+                Seu cadastro como CLIENTE foi efetuado com sucesso. Verifique seu e-mail e confirme seu cadastro agora mesmo!
+                <br>
+                Após confirmação, você estará apto a procurar os profissionais da nossa plataforma.
             </div>
 
             <br>
-            <a href="escolhaLogin.php" class="botao">
+            <a href="login.php" class="botao">
                     <strong>Voltar para a tela de login</strong>
                 </a>
             

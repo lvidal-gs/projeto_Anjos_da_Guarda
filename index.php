@@ -16,7 +16,7 @@ session_start();
 
 <body>
     <nav>
-        <a href="index.html"> <img src="img/anjos_da_guarda_logo_nomeLateral.png" width="290px"> </a>
+        <a href="index.php"> <img src="img/anjos_da_guarda_logo_nomeLateral.png" width="290px"> </a>
         <span>
             <ul>
                 <li><a href="#cliente">Cliente</a></li>
@@ -26,10 +26,10 @@ session_start();
             </ul>
         </span>
         <div>
-            <a href="escolhaLogin.php" class="botao" id="login">
+            <a href="login.php" class="botao" id="login">
                 <strong>Login</strong>
             </a>
-            <a href="escolhaCad.php" class="botao">
+            <a href="cadastro.php" class="botao">
                 <strong>Cadastre-se</strong>
             </a>
         </div>
@@ -41,7 +41,7 @@ session_start();
             <div class="funcionalidade">
                 <h1>CUIDADORES</h1><br>
                 <h2>Cadastre-se como cuidador e divulgue seu trabalho da melhor maneira!</h2><br>
-                <a href="cadPro.php" class="botao">
+                <a href="cadastro.php" class="botao">
                     <strong>Quero me cadastrar</strong>
                 </a>
 
@@ -49,7 +49,7 @@ session_start();
             <div class="funcionalidade">
                 <h1>CLIENTES</h1><br>
                 <h2>Encontre aqui um serviço personalizado que se adeque as suas necessidades!</h2><br>
-                <a class="botao" href="cadCliente">
+                <a class="botao" href="login.php">
                     <strong>Encontre um cuidador</strong>
                 </a>
             </div>
@@ -89,7 +89,7 @@ session_start();
                 clientes.
             </h2>
             <br>
-            <a href="cadPro.php" class="botao">
+            <a href="cadastro.php" class="botao">
                 <strong>Quero me cadastrar</strong>
             </a>
         </div>

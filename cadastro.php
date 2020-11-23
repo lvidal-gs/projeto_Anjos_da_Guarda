@@ -5,63 +5,101 @@ $btnCadastro = filter_input(INPUT_POST, 'btnCadastro', FILTER_SANITIZE_STRING);
 
 if ($btnCadastro) {
     include_once 'conexao.php';
+    $escolha = filter_input(INPUT_POST, 'tipo-cadastro', FILTER_SANITIZE_STRING);
     $dados = filter_input_array(INPUT_POST, FILTER_DEFAULT);
-    $dados['senha'] = password_hash($dados['senha'], PASSWORD_DEFAULT);
-
+    $dados['senha'] = password_hash($dados['senha'], PASSWORD_DEFAULT); //CRIPTOGRAFA A A SENHA
     $cep = filter_input(INPUT_POST, 'cep', FILTER_SANITIZE_NUMBER_INT);
-    $rua = $_POST['rua'];
-    $bairro = $_POST['bairro'];
-    $uf = $_POST['uf'];
+    $rua = filter_input(INPUT_POST, 'rua', FILTER_SANITIZE_STRING);
+    $bairro = filter_input(INPUT_POST, 'bairro', FILTER_SANITIZE_STRING);
+    $uf = filter_input(INPUT_POST, 'uf', FILTER_SANITIZE_STRING);
     $cidade = filter_input(INPUT_POST, 'cidade', FILTER_SANITIZE_STRING);
-    $numero = $_POST['numero'];
-    $comp = $_POST['comp'];
+    $numero = filter_input(INPUT_POST, 'numero', FILTER_SANITIZE_STRING);
+    $comp = filter_input(INPUT_POST, 'comp', FILTER_SANITIZE_STRING);
     $sexo = filter_input(INPUT_POST, 'sexo', FILTER_SANITIZE_STRING);
-
     $data = $_POST['data'];
     $data = date("Y-m-d", strtotime(str_replace('/', '-', $data)));
 
+    if ($escolha == 'P') {
+        $busca = "SELECT * FROM cuidador";
+        $busca_query = mysqli_query($conn, $busca);
+        if ($busca_query) {
+            $row_usuario = mysqli_fetch_assoc($busca_query);
+            if ($dados['email'] === $row_usuario['email']) {
+                $_SESSION['msg'] = " <p style='color: red; margin-top:20px; margin-bottom: -30px'>Esse e-mail já está cadastrado.</p>";
+            } else if ($dados['cpf'] === $row_usuario['cpf']) {
+                $_SESSION['msg'] = " <p style='color: red; margin-top:20px; margin-bottom: -30px'>Esse cpf já está cadastrado.</p>";
+            } else if ($dados['telefone'] === $row_usuario['telefone']) {
+                $_SESSION['msg'] = " <p style='color: red; margin-top:20px; margin-bottom: -30px'>Esse telefone já está cadastrado.</p>";
+            } else {
+                $result_usuario = "INSERT INTO  cuidador(nome, sobrenome, cpf, sexo, nascimento, email, senha, telefone, cep, rua,bairro, cidade, uf, numero, comp, created, nivel, espec)
+            VALUES(
+                '" . $dados['nome'] . "',
+                '" . $dados['sobrenome'] . "', 
+                '" . $dados['cpf'] . "',
+                '$sexo',
+                '$data',
+                '" . $dados['email'] . "',
+                '" . $dados['senha'] . "',
+                '" . $dados['telefone'] . "',
+                '$cep',
+                '$rua',
+                '$bairro',
+                '$cidade',
+                '$uf',
+                '$numero',
+                '$comp',
+                now(),
+                DEFAULT,
+                '6')";
 
-    $result_usuario =
-        "INSERT INTO  cuidador(
-        nome,
-        sobrenome, 
-        cpf, 
-        sexo,
-        nascimento,
-        email, 
-        senha, 
-        telefone,
-        cep,
-        rua,
-        bairro,
-        cidade,
-        uf,
-        numero,
-        comp,
-        created) VALUES(
-        '" . $dados['nome'] . "',
-        '" . $dados['sobrenome'] . "', 
-        '" . $dados['cpf'] . "',
-        '$sexo',
-        '$data',
-        '" . $dados['email'] . "',
-        '" . $dados['senha'] . "',
-        '" . $dados['telefone'] . "',
-        '$cep',
-        '$rua',
-        '$bairro',
-        '$cidade',
-        '$uf',
-        '$numero',
-        '$comp',
-        now())";
+                $resultado = mysqli_query($conn, $result_usuario);
+                if (mysqli_insert_id($conn)) {
+                    header("Location: sucessoCuidador.php");
+                } else {
+                    $_SESSION['msg'] = " <p style='color: red; margin-top:20px; margin-bottom: -30px'>Erro ao cadastrar o usuário! Contate nosso suporte agora mesmo!</p>";
+                }
+            }
+        }
+    }else if ($escolha == 'C'){
+        $busca = "SELECT * FROM clientes";
+        $busca_query = mysqli_query($conn, $busca);
+        if ($busca_query) {
+            $row_usuario = mysqli_fetch_assoc($busca_query);
+            if ($dados['email'] === $row_usuario['email']) {
+                $_SESSION['msg'] = " <p style='color: red; margin-top:20px; margin-bottom: -30px'>Esse e-mail já está cadastrado.</p>";
+            } else if ($dados['cpf'] === $row_usuario['cpf']) {
+                $_SESSION['msg'] = " <p style='color: red; margin-top:20px; margin-bottom: -30px'>Esse cpf já está cadastrado.</p>";
+            } else if ($dados['telefone'] === $row_usuario['telefone']) {
+                $_SESSION['msg'] = " <p style='color: red; margin-top:20px; margin-bottom: -30px'>Esse telefone já está cadastrado.</p>";
+            } else {
+                $result_usuario = "INSERT INTO  clientes(nome, sobrenome, cpf, sexo, nascimento, email, senha, telefone, cep, rua,bairro, cidade, uf, numero, comp, created, nivel)
+            VALUES(
+                '" . $dados['nome'] . "',
+                '" . $dados['sobrenome'] . "', 
+                '" . $dados['cpf'] . "',
+                '$sexo',
+                '$data',
+                '" . $dados['email'] . "',
+                '" . $dados['senha'] . "',
+                '" . $dados['telefone'] . "',
+                '$cep',
+                '$rua',
+                '$bairro',
+                '$cidade',
+                '$uf',
+                '$numero',
+                '$comp',
+                now(),
+                '2')";
 
-    $resultado = mysqli_query($conn, $result_usuario);
-
-    if (mysqli_insert_id($conn)) {
-        header("Location: cadSucess.php");
-    } else {
-        $_SESSION['msg'] = " <p style='color: red; margin-top:20px; margin-bottom: -30px'>Erro ao cadastrar o usuário! Verifique se preencheu todos os campos corretamente.</p>";
+                $resultado = mysqli_query($conn, $result_usuario);
+                if (mysqli_insert_id($conn)) {
+                    header("Location: sucessoCliente.php");
+                } else {
+                    $_SESSION['msg'] = " <p style='color: red; margin-top:20px; margin-bottom: -30px'>Erro ao cadastrar o usuário! Contate nosso suporte agora mesmo!</p>";
+                }
+            }
+        }
     }
 }
 ?>
@@ -90,11 +128,11 @@ if ($btnCadastro) {
     <div id="cad-pro">
         <header>
 
-            <a href="index.html">
+            <a href="index.php">
                 <img src="img/anjos_da_guarda_logo_sf" width="225px">
             </a>
 
-            <a href="index.html">
+            <a href="index.php">
                 <img src="img/arrow.svg" alt="" height="12px" collor="#2274a5">
                 Voltar para home
             </a>
@@ -102,7 +140,7 @@ if ($btnCadastro) {
 
         <form name=form method="POST" action="">
 
-            <h1>Cadastre-se como cuidador!</h1>
+            <h1>Cadastre-se na nossa plataforma!</h1>
             <?php
             if (isset($_SESSION['msg'])) {
                 echo $_SESSION['msg'];
@@ -115,7 +153,6 @@ if ($btnCadastro) {
             }
             ?>
 
-
             <!--FORMULÁRIO DE CADASTRO - DADOS BÁSICOS-->
             <fieldset>
 
@@ -123,6 +160,22 @@ if ($btnCadastro) {
                     <h2>Dados Básicos</h2>
                     <h6>Preenchimento Obrigatório (*)</h6>
                 </legend>
+
+                <div class="field">
+                    <label for="sexo">Eu quero me cadastrar como *</label>
+                    <div class="cntr">
+
+                        <label for="op1" class="radio" required>
+                            <input type="radio" name="tipo-cadastro" id="op1" class="hidden" value="P" />
+                            <span class="label"></span>Profissional - Cuidador
+                        </label>
+
+                        <label for="op2" class="radio">
+                            <input type="radio" name="tipo-cadastro" id="op2" class="hidden" value="C" />
+                            <span class="label"></span>Cliente
+                        </label>
+                    </div>
+                </div>
 
                 <div class="field-group">
                     <div class="field">
@@ -241,7 +294,7 @@ if ($btnCadastro) {
                     <input name="comp" type="text" id="complemento" maxlenght="45" placeholder="Ex.: Apto. Nº5, Bloco 2">
                 </div>
 
-                <p class="sublink">Já é cadastrado? <a href="loginPro.php">Clique aqui</a>.</p>
+                <p class="sublink">Já é cadastrado? <a href="login.php">Clique aqui</a>.</p>
                 <input class="button" onclick="return validar()" name="btnCadastro" type="submit" value="Cadastrar-se"></input><br><br>
 
                 <h6>

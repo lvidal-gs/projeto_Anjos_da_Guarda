@@ -19,7 +19,7 @@ session_start();
 <body>
 
     <nav>
-        <a href="index.html"> <img src="img/anjos_da_guarda_logo_nomeLateral.png" width="290px" style="margin-right: -200px;"> </a>
+        <a href="index.php"> <img src="img/anjos_da_guarda_logo_nomeLateral.png" width="290px" style="margin-right: -200px;"> </a>
         <span>
             <ul>
                 <li><a href="#">Cuidador</li>
@@ -47,9 +47,9 @@ session_start();
             <img src="img/default_photo.png" alt="image">
             <div class="info">
                 <?php
-                echo "<h1> " . $_SESSION['nome'] . " " . $_SESSION['sobrenome'] . " </h1><br>";
-                echo "<h5>Especialidade: </h5>";
-                echo "<h5>Área de atuação: " . $_SESSION['uf'] . ", " . $_SESSION['cidade'] . ", " . $_SESSION['bairro'] . "</h5>";
+                echo "<h1>".$_SESSION['nome']." ".$_SESSION['sobrenome']." </h1><br>";
+                echo "<h5 style='color: var(--text-color);'>Especialidade: ".$_SESSION['espec']." </h5>";
+                echo "<h5 style='color: var(--text-color);'>Área de atuação: ".$_SESSION['uf'].", " .$_SESSION['cidade']."</h5>";
                 ?>
             </div>
 
@@ -64,7 +64,7 @@ session_start();
         </div>
         <div class="sobre">
             <section>
-                <h1>Formação</h1>
+                <h1>Formação Acadêmica</h1>
                 <?php echo "<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo sequi ipsa quod dolore officia ipsam aperiam architecto totam est! Neque ipsam harum saepe cupiditate repellendus quo pariatur ipsa ad excepturi.</p>"
                 ?>
             </section>
@@ -72,7 +72,7 @@ session_start();
 
         <div class="sobre">
             <section>
-                <h1>Experiencia</h1>
+                <h1>Experiencias</h1>
                 <?php echo "<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo sequi ipsa quod dolore officia ipsam aperiam architecto totam est! Neque ipsam harum saepe cupiditate repellendus quo pariatur ipsa ad excepturi.</p>"
                 ?>
             </section>
