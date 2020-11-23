@@ -16,11 +16,11 @@ session_start();
     <div id="cad-pro">
         <header>
 
-            <a href="index.html">
+            <a href="index.php">
                 <img src="img/anjos_da_guarda_logo_sf" width="225px">
             </a>
 
-            <a href="index.html">
+            <a href="index.php">
                 <img src="img/arrow.svg" alt="" height="12px" collor="#2274a5">
                 Voltar para home
             </a>

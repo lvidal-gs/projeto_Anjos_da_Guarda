@@ -11,6 +11,8 @@ session_start();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="img/anjos_da_guarda_logo_favicon.png" />
     <link rel="stylesheet" href="css/styles.css">
+
+    <script type="text/javascript" src="js/validarContato.js"></script>
     <title>Anjos da Guarda</title>
 </head>
 
@@ -113,7 +115,7 @@ session_start();
                 <div class="field-group">
                     <div class="field">
                         <label for="name">Nome *</label>
-                        <input type="text" name="nome" id="name" placeholder="Insira seu nome">
+                        <input type="text" onchange="return teste()"name="nome" id="name" placeholder="Insira seu nome">
                     </div>
 
                     <div class="field">
@@ -134,7 +136,7 @@ session_start();
 
                 <h6>A mensagem será lida por um de nossos funcionários. A resposta poderá demorar até 3 dias úteis para
                 ser respondida.</h6>
-                <input class="button" name="btnEnvia" type="submit" value="Enviar mensagem"></input>
+                <input class="button"  name="btnEnvia" type="submit" value="Enviar mensagem"></input>
             </form>
         </div>
     </main>
