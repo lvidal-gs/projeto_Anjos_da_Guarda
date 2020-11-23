@@ -1,77 +1,98 @@
-
+<?php
+session_start();
+?>
 
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
-<meta charset="UTF-8">
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="img/anjos_da_guarda_logo_favicon.png" />
 
-    <script type="text/javascript" src="js/end_viacep.js"></script>
-
     <link rel="stylesheet" href="css/styles.css">
+
 
     <title>Meu Perfil</title>
 </head>
+
 <body>
-    <div id="cad-pro">
-        <header>
 
-            <a href="index.html">
-                <img src="img/anjos_da_guarda_logo_sf" width="225px">
-            </a>
+    <nav>
+        <a href="index.html"> <img src="img/anjos_da_guarda_logo_nomeLateral.png" width="290px" style="margin-right: -200px;"> </a>
+        <span>
+            <ul>
+                <li><a href="#">Cuidador</li>
+                <li><a href="perfilPro">Meu Perfil</a></li>
+                <li><a href="#">Fale Conosco</a></li>
+            </ul>
+        </span>
 
-            <a href="index.html">
-                <img src="img/arrow.svg" alt="" height="12px" collor="#2274a5">
-                Voltar para home
+
+        <div>
+            <?php
+            echo "<teste style='color: var(--nav-color); font-weight: bolder;font-size: 15px;'>Bem-vindo(a) " . $_SESSION['nome'] . "!</teste>";
+            ?>
+            <a href="sair.php" class="botao">
+                <strong>Sair</strong>
             </a>
-        </header>
-    </div>
+        </div>
+
+    </nav>
+    <br><br><br><br>
 
     <main>
+
         <div class="dados">
-            <img src="img/414b4e357225d55c6b59c36376637324.jpg" alt="">
+            <img src="img/default_photo.png" alt="image">
             <div class="info">
-                <h1>Dino Silva Sauro</h1>
-                <h4>Não é a mamãe</h4>
-                <h4>Vila dos dinossauros, próximo ao centro</h4>
+                <?php
+                echo "<h1> " . $_SESSION['nome'] . " " . $_SESSION['sobrenome'] . " </h1><br>";
+                echo "<h5>Especialidade: </h5>";
+                echo "<h5>Área de atuação: " . $_SESSION['uf'] . ", " . $_SESSION['cidade'] . ", " . $_SESSION['bairro'] . "</h5>";
+                ?>
             </div>
-            <div class="contact">
-                <h3>Whatsapp: (11)94002-8922</h3>
-                <h3>E-mail: dino.sauro@gmail.com</h3>
-            </div>
+
         </div>
 
         <div class="sobre">
             <section>
                 <h1>Sobre</h1>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo sequi ipsa quod dolore officia ipsam aperiam architecto totam est! Neque ipsam harum saepe cupiditate repellendus quo pariatur ipsa ad excepturi.</p>
+                <?php echo "<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo sequi ipsa quod dolore officia ipsam aperiam architecto totam est! Neque ipsam harum saepe cupiditate repellendus quo pariatur ipsa ad excepturi.</p>"
+                ?>
             </section>
         </div>
-
         <div class="sobre">
             <section>
                 <h1>Formação</h1>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Id rerum provident magnam omnis ex sit dicta, tempora, at nisi ratione quisquam officiis animi harum doloribus facilis deleniti totam. Aliquam, quibusdam?</p>
+                <?php echo "<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo sequi ipsa quod dolore officia ipsam aperiam architecto totam est! Neque ipsam harum saepe cupiditate repellendus quo pariatur ipsa ad excepturi.</p>"
+                ?>
             </section>
         </div>
 
         <div class="sobre">
             <section>
                 <h1>Experiencia</h1>
-                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Culpa obcaecati nostrum magni aliquam tempora provident a voluptate. Voluptatem placeat maxime, perferendis in deserunt esse ipsa ea aliquam, eligendi iusto nihil?</p>
+                <?php echo "<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo sequi ipsa quod dolore officia ipsam aperiam architecto totam est! Neque ipsam harum saepe cupiditate repellendus quo pariatur ipsa ad excepturi.</p>"
+                ?>
             </section>
         </div>
+
+        <?php
+        echo "<link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css'>
+        <a href='https://wa.me/55".$_SESSION['telefone']."' style='position:fixed;width:60px;height:60px;bottom:40px;right:40px;background-color:#25d366;color:#FFF;border-radius:50px;text-align:center;font-size:30px;box-shadow: 1px 1px 2px #888;
+  z-index:1000;' target='_blank'> <i style='margin-top:16px' class='fa fa-whatsapp'></i>
+        </a>"
+        ?>
     </main>
-    
-    
 
-    
+
+
 </body>
-</html>
 
+</html>
 <style>
-    main{
+    main {
         background-color: white;
         min-height: 600px;
         display: flex;
@@ -82,36 +103,58 @@
         box-shadow: none;
     }
 
-    .dados{
-        margin: 10px 10px;
+    .dados {
+        margin: 10px 10px 0 -200px;
         display: flex;
         align-items: center;
         justify-content: space-evenly;
     }
 
-    .dados img{
-        margin: 10px 10px;
-        width: 200px;
+
+    .dados img {
+        margin: 10px 10px 0 -100px;
+        width: 160px;
         padding: 5px 5px;
-        border: solid 2px black;
-        border-radius: 10px;
-        background-color: white;
+        border: solid 2px #fd4d56;
+        border-radius: 100%;
+        background-color: #fff;
         justify-self: flex-start;
     }
 
-    .dados .info{
+    .dados .info {
         margin: 10px 10px;
         flex: 2;
     }
 
-    .dados .contact{
+    .dados .contact {
         justify-self: flex-end;
         margin: 10px 10px;
     }
 
-    .sobre{
-        margin: 10px 10px;
+    .sobre {
+        margin: 20px 20px;
         align-self: center;
     }
-</style>
 
+    .sobre p {
+        text-justify: right;
+        margin: 10px 40px 15px 40px;
+    }
+
+    .dados #whatsbutton {
+        background-color: #34af23;
+        display: block;
+        float: right;
+        font-family: ubuntu;
+        color: #fff;
+        font-size: 10pt;
+        max-width: 200px;
+        border-radius: 8px;
+        text-decoration: none;
+        padding: 16px 16px;
+        margin: 5px -5px;
+        transition: background-color 0.2s;
+        cursor: pointer;
+        border: none;
+    }
+</style>

@@ -45,7 +45,7 @@
             </div>
 
             <br>
-            <a href="loginPro.php" class="botao">
+            <a href="escolhaLogin.php" class="botao">
                     <strong>Voltar para a tela de login</strong>
                 </a>
             

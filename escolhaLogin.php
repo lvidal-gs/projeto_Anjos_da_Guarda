@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="img/anjos_da_guarda_logo_favicon.png" />
     <link rel="stylesheet" href="css/styles.css">
-    <title>Como quer se cadastrar?</title>
+    <title>Como você quer Logar?</title>
 </head>
 
 <body>
@@ -24,27 +24,28 @@
         </header>
 
 
-        <h1>Cadastre-se na nossa plataforma agora mesmo!</h1>
+        <h1 id="tit">Entre na sua conta</h1>
+
         <div class="core">
             <div class="funcionalidade">
-                <h1>CUIDADORES</h1><br>
-                <h2>Cadastre-se como cuidador e divulgue seu trabalho da melhor maneira!</h2><br>
-                <a href="cadPro.php" class="botao">
-                    <strong>Cadastro como CUIDADOR</strong>
+                <h1>SOU CUIDADOR</h1><br>
+                <h2>Entre no seu perfil de cuidador</h2><br>
+                <a href="loginPro.php" class="botao">
+                    <strong>Login como CUIDADOR</strong>
                 </a>
 
             </div>
             <div class="funcionalidade">
-                <h1>CLIENTES</h1><br>
-                <h2>Encontre aqui um serviço personalizado que se adeque as suas necessidades!</h2><br>
-                <a class="botao" href="cadCliente.php">
-                    <strong>Cadastro como CLIENTE</strong>
+                <h1>SOU CLIENTE</h1><br>
+                <h2>Entre no seu perfil como cliente.</h2><br>
+                <a class="botao" href="loginCliente.php">
+                    <strong>Login como CLIENTE</strong>
                 </a>
             </div>
         </div>
-        <p class="sublink">Já é cadastrado? <a href="loginPro.php">Clique aqui</a>.</p>
-        
+        <p class="sublink">Não é cadastrado? Faça seu cadastro agora mesmo <a href="escolhaCad.php">clicando aqui</a>.</p>
     </div>
+
 </body>
 
 </html>

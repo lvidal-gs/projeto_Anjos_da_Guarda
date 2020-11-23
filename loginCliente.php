@@ -9,7 +9,7 @@ session_start();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/styles.css">
     <link rel="shortcut icon" href="img/anjos_da_guarda_logo_favicon.png" />
-    <title>Login - Cuidadores</title>
+    <title>Login - Cliente</title>
 </head>
 
 <body>
@@ -21,13 +21,13 @@ session_start();
             </a>
 
             <a href="index.html">
-                <img src="img/arrow.svg" alt="" height="12px" color="#2274a5">
+                <img src="img/arrow.svg" alt="" height="12px" collor="#2274a5">
                 Voltar para home
             </a>
         </header>
 
-        <form method="POST" action="validaLogin_cuid.php">
-            <h1>Área dos Cuidadores - Login</h1>
+        <form method="POST" action="validaLogin_cliente.php">
+            <h1>Área de Clientes - Login</h1>
             <fieldset>
                 <?php
                     if(isset($_SESSION['msg'])){ //se existir
@@ -49,7 +49,6 @@ session_start();
             
             <p class = "sublink">Ainda não é cadastrado? <a href="escolhaCad.php">Clique aqui</a>.</p>
             <p class="sublink">Esqueceu sua senha? <a href="#">Clique aqui</a>.</p>
-            <p class="sublink">Quer trocar o tipo do seu login? <a href="escolhaLogin">Clique aqui</a>.</p>
             <input class="button" name="btnLogin" type="submit" value="Entrar"></input>
         </form>
     </div>
