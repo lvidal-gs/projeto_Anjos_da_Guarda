@@ -31,7 +31,7 @@ session_start();
 
         <div>
             <?php
-            echo "<teste style='color: var(--nav-color); font-weight: bolder;font-size: 15px;'>Bem-vindo(a) Cuidador(a) ".$_SESSION['nome']."!</teste>";
+            echo "<teste style='color: var(--nav-color); font-weight: bolder;font-size: 15px;'>Bem-vindo(a) ".$_SESSION['nome']."!</teste>";
             ?>
             <a href="sair.php" class="botao">
                 <strong>Sair</strong>

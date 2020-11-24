@@ -9,7 +9,7 @@ session_start();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/styles.css">
     <link rel="shortcut icon" href="img/anjos_da_guarda_logo_favicon.png" />
-    <title>Login - Cliente</title>
+    <title>Área de Login</title>
 </head>
 
 <body>
@@ -26,7 +26,7 @@ session_start();
             </a>
         </header>
 
-        <form method="POST" action="validaLogin_cliente.php">
+        <form method="POST" action="validaLogin.php">
             <h1>Área de Login</h1>
             <h3>Escolha como quer acessar a plataforma </h3><br>
             <div style="margin-bottom: -40px;" class="field-group">
@@ -35,12 +35,12 @@ session_start();
                 </label>
                 <div class="">
                     <label for="op1" class="radio" required>
-                        <input type="radio" name="tipo-cadastro" id="op1" class="hidden" value="P" />
+                        <input type="radio" name="escolha" id="op1" class="hidden" value="P" />
                         <span class="label"></span>Profissional - Cuidador
                     </label>
 
                     <label for="op2" class="radio">
-                        <input type="radio" name="tipo-cadastro" id="op2" class="hidden" value="C" />
+                        <input type="radio" name="escolha" id="op2" class="hidden" value="C" />
                         <span class="label"></span>Cliente
                     </label>
                 </div>
