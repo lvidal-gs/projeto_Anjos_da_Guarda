@@ -40,7 +40,9 @@ session_start();
 
     </nav>
     <br><br><br><br>
-
+            <a href="editarPerfil_cuidador.php" class="botao">
+                <strong>Sair</strong>
+            </a>
     <main>
 
         <div class="dados">
@@ -49,7 +51,7 @@ session_start();
                 <?php
                 echo "<h1>".$_SESSION['nome']." ".$_SESSION['sobrenome']." </h1><br>";
                 echo "<h5 style='color: var(--text-color);'>Especialidade: ".$_SESSION['espec']." </h5>";
-                echo "<h5 style='color: var(--text-color);'>Área de atuação: ".$_SESSION['uf'].", " .$_SESSION['cidade']."</h5>";
+                echo "<h5 style='color: var(--text-color);'>Reside em: ".$_SESSION['uf'].", " .$_SESSION['cidade']."</h5>";
                 ?>
             </div>
 

@@ -22,7 +22,7 @@ session_start();
         <a href="index.php"> <img src="img/anjos_da_guarda_logo_nomeLateral.png" width="290px" style="margin-right: -200px;"> </a>
         <span>
             <ul>
-                <li><a href="#">Cuidador</li>
+                <li><a href="#">Buscar Cuidador</li>
                 <li><a href="perfilPro">Meu Perfil</a></li>
                 <li><a href="#">Fale Conosco</a></li>
             </ul>
@@ -32,6 +32,7 @@ session_start();
         <div>
             <?php
             echo "<teste style='color: var(--nav-color); font-weight: bolder;font-size: 15px;'>Bem-vindo(a) ".$_SESSION['nome']."!</teste>";
+            
             ?>
             <a href="sair.php" class="botao">
                 <strong>Sair</strong>
@@ -48,8 +49,8 @@ session_start();
             <div class="info">
                 <?php
                 echo "<h1>".$_SESSION['nome']." ".$_SESSION['sobrenome']." </h1><br>";
-                echo "<h5 style='color: var(--text-color);'>Especialidade: ".$_SESSION['espec']." </h5>";
-                echo "<h5 style='color: var(--text-color);'>Área de atuação: ".$_SESSION['uf'].", " .$_SESSION['cidade']."</h5>";
+                echo "<h5 style='color: var(--text-color);'>Reside em: ".$_SESSION['uf'].", " .$_SESSION['cidade']."</h5>";
+                echo "<h5 style='color: var(--text-color);'>Procura: ";
                 ?>
             </div>
 

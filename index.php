@@ -17,14 +17,16 @@ session_start();
 </head>
 
 <body>
+
+
     <nav>
-        <a href="index.php"> <img src="img/anjos_da_guarda_logo_nomeLateral.png" width="290px"> </a>
+        <a href="index.php"> <img src="img/anjos_da_guarda_logo_nomeLateral.png" width="300px"> </a>
         <span>
             <ul>
                 <li><a href="#cliente">Cliente</a></li>
                 <li><a href="#cuidador">Cuidador</a></li>
                 <li><a href="#sobre">Sobre</a></li>
-                <li><a href="#contato">Contato</a></li>
+                <li><a href="#cad-pro">Contato</a></li>
             </ul>
         </span>
         <div>
@@ -37,7 +39,7 @@ session_start();
         </div>
 
     </nav>
-
+?>
     <header id="home">
         <div class="core">
             <div class="funcionalidade">
@@ -76,7 +78,7 @@ session_start();
             </div>
             <br>
             <h2>
-                Ficou interessado e quer contratar um dos nossos cuidadores? Converse agora mesmo com um dos nossos profissionais cadatrados e veja quem atende melhor suas necessidades. Não perca tempo e acabe agora mesmo com suas preocupações clicando no botão abaixo! 
+                Ficou interessado e quer contratar um dos nossos cuidadores? Converse agora mesmo com um dos nossos profissionais cadastrados e veja quem atende melhor suas necessidades. Não perca tempo e acabe agora mesmo com suas preocupações clicando no botão abaixo! 
             </h2>
             <br>
             <a href="" class="botao">
@@ -106,11 +108,12 @@ session_start();
         </div>
 
         <div id="cad-pro" class="content" name="teste">
-            <h1>Contato</h1> <br><br>
-            <h2>Precisa falar conosco? Envie-nos uma mensagem!</h2>
+            <h1>Fale Conosco</h1><br><br>
+            <h2 style="margin-top: -20px; margin-bottom: -30px;">Precisa falar conosco? Envie-nos uma mensagem!</h2>
             <br>
             <form method="POST" action="">
-                <h6>Preenchimento obrigatório (*)</h6><br>
+                <h1 style="text-align: center; margin-top: -35px;">Contato</h1><br><br>
+                <h6 style="text-align: right;">Preenchimento obrigatório (*)</h6><br>
 
                 <div class="field-group">
                     <div class="field">

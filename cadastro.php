@@ -50,7 +50,7 @@ if ($btnCadastro) {
                 '$comp',
                 now(),
                 DEFAULT,
-                '6')";
+                '9')";
 
                 $resultado = mysqli_query($conn, $result_usuario);
                 if (mysqli_insert_id($conn)) {
@@ -120,7 +120,7 @@ if ($btnCadastro) {
 
 
 
-    <title>Cadastro de Cuidador</title>
+    <title>Cadastro de Usuário</title>
 </head>
 
 
@@ -166,7 +166,7 @@ if ($btnCadastro) {
                     <div class="cntr">
 
                         <label for="op1" class="radio" required>
-                            <input type="radio" name="tipo-cadastro" id="op1" class="hidden" value="P" />
+                            <input checked type="radio" name="tipo-cadastro" id="op1" class="hidden" value="P" />
                             <span class="label"></span>Profissional - Cuidador
                         </label>
 
@@ -199,7 +199,7 @@ if ($btnCadastro) {
                     <div class="cntr">
 
                         <label for="opt1" class="radio" required>
-                            <input type="radio" name="sexo" id="opt1" class="hidden" value="M" />
+                            <input checked type="radio" name="sexo" id="opt1" class="hidden" value="M" />
                             <span class="label"></span>Masculino
                         </label>
 
