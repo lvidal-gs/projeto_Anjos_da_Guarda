@@ -127,7 +127,11 @@
     background-color: #c4c4c4;
 
   }
-
+  @media (max-width: 700px){
+    header {flex-direction: column;}
+    header img{margin-bottom: 15px;}
+  }
+  
   #home{
     margin-top: 70px;
     background-image: url(https://www.cotidian.com.br/images/articulos/Lastareasdeuncuidador.jpg);

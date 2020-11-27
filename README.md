@@ -23,3 +23,10 @@ Este projeto foi feito com o intuito de ser um sistema de busca de cuidadores.
     - Inputs:
         1. Estado
         2. Cidade
+
+
+## FILTRO DE BUSCA
+    - Local
+    - Especialidade
+    - Nome de A a Z;
+    - Nome de Z a A;

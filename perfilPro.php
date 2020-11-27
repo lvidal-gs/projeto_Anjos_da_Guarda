@@ -43,7 +43,7 @@ session_start();
             <a href="editarPerfil_cuidador.php" class="botao">
                 <strong>Sair</strong>
             </a>
-    <main>
+    <main >
 
         <div class="dados">
             <img src="img/default_photo.png" alt="image">
@@ -114,7 +114,7 @@ session_start();
 
 
     .dados img {
-        margin: 10px 10px 0 -100px;
+        margin: 10px 10px;
         width: 160px;
         padding: 5px 5px;
         border: solid 2px #fd4d56;

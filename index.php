@@ -8,7 +8,7 @@ session_start();
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="shortcut icon" href="img/anjos_da_guarda_logo_favicon.png" />
     <link rel="stylesheet" href="css/styles.css">
 
@@ -39,7 +39,7 @@ session_start();
         </div>
 
     </nav>
-?>
+
     <header id="home">
         <div class="core">
             <div class="funcionalidade">

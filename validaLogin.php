@@ -28,11 +28,13 @@ if ($btnLogin) { //se o botão for acionado...
 
                     header("Location: perfilPro.php");
                 } else {
-                    $_SESSION['msg'] = "<p style='color: red'>A senha informada não é a correta.</p><br>";
+                    $_SESSION['msg'] = "<p style='background: #FFC7CE; border-width: 0.5px; border-style: solid;
+        border-color: #7A0006; border-radius: 3px; color: #7A0006; padding: 8px 8px 8px 12px'>Login ou senha incorretos.</p><br>";
                     header("Location: login.php");
                 }
             } else {
-                $_SESSION['msg'] = "<p style='color: red'>Login ou senha incorretos.</p><br>"; //cria a variavel global 
+                $_SESSION['msg'] = "<p style='background: #FFC7CE; border-width: 0.5px; border-style: solid;
+        border-color: #7A0006; border-radius: 3px; color: #7A0006; padding: 8px 8px 8px 12px'>Usuário não encontrado</p><br>"; //cria a variavel global 
                 header("Location: login.php");
             }
 
@@ -55,34 +57,43 @@ if ($btnLogin) { //se o botão for acionado...
 
                     header("Location: perfilCliente.php");
                 } else {
-                    $_SESSION['msg'] = "<p style='color: red'>A senha informada não é a correta.</p><br>";
+                    $_SESSION['msg'] = "<p style='background: #FFC7CE; border-width: 0.5px; border-style: solid;
+        border-color: #7A0006; border-radius: 3px; color: #7A0006; padding: 8px 8px 8px 12px'>Login ou senha incorretos.</p><br>";
                     header("Location: login.php");
                 }
             } else {
-                $_SESSION['msg'] = "<p style='color: red'>Login ou senha incorretos.</p><br>"; //cria a variavel global 
+                $_SESSION['msg'] = "<p style='background: #FFC7CE; border-width: 0.5px; border-style: solid;
+        border-color: #7A0006; border-radius: 3px; color: #7A0006; padding: 8px 8px 8px 12px'>Usuário não encontrado.</p><br>"; //cria a variavel global 
                 header("Location: login.php");
             }
         }
     
     } else if ((empty($email)) and (!empty($senha)) and (!empty($escolha))) {
-        $_SESSION['msg'] = "<p style='color: red'>Preencha o campo de e-mail.</p><br>"; //cria a variavel global 
+        $_SESSION['msg'] = "<p style='background: #FFC7CE; border-width: 0.5px; border-style: solid;
+        border-color: #7A0006; border-radius: 3px; color: #7A0006; padding: 4px 4px 4px 8px'>Preencha o campo de e-mail.</p><br>"; //cria a variavel global 
         header("Location: login.php");
 
     } else if ((!empty($email)) and (empty($senha)) and (!empty($escolha))) {
-        $_SESSION['msg'] = "<p style='color: red'>Preencha o campo de senha.</p><br>"; //cria a variavel global 
+        $_SESSION['msg'] = "<p style='background: #FFC7CE; border-width: 0.5px; border-style: solid;
+        border-color: #7A0006; border-radius: 3px; color: #7A0006; padding: 8px 8px 8px 12px'>Preencha o campo de senha.</p><br>"; //cria a variavel global 
         header("Location: login.php");
 
     } else if ((!empty($email)) and (!empty($senha)) and (empty($escolha))) {
-        $_SESSION['msg'] = "<p style='color: red'>Escolha o tipo de Login no sistema.</p><br>"; //cria a variavel global 
+        $_SESSION['msg'] = "<p style='background: #FFC7CE; border-width: 0.5px; border-style: solid;
+        border-color: #7A0006; border-radius: 3px; color: #7A0006; padding: 8px 8px 8px 12px'>Escolha o tipo de Login no sistema.</p><br>"; //cria a variavel global 
         header("Location: login.php");
 
     } else if ((empty($email)) or (empty($senha)) or (empty($escolha))) {
-        $_SESSION['msg'] = "<p style='color: red'>Preencha todos os campos.</p><br>"; //cria a variavel global 
+        $_SESSION['msg'] = "<p style='background: #FFC7CE; border-width: 0.5px; border-style: solid;
+        border-color: #7A0006; border-radius: 3px; color: #7A0006; padding: 8px 8px 8px 12px'>Preencha todos os campos.</p><br>"; //cria a variavel global 
         header("Location: login.php");
 
     }
 
 } else { //caso não...
-    $_SESSION['msg'] = "Página não encontrada."; //cria a variavel global 
+    $_SESSION['msg'] = "<p style='background: #FFC7CE; border-width: 0.5px; border-style: solid;
+        border-color: #7A0006; border-radius: 3px; color: #7A0006; padding: 8px 8px 8px 12px'></p>Página não encontrada."; //cria a variavel global 
     header("Location: loginPro.php");
 }
+?>
+

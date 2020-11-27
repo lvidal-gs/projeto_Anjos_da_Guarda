@@ -25,11 +25,14 @@ if ($btnCadastro) {
         if ($busca_query) {
             $row_usuario = mysqli_fetch_assoc($busca_query);
             if ($dados['email'] === $row_usuario['email']) {
-                $_SESSION['msg'] = " <p style='color: red; margin-top:20px; margin-bottom: -30px'>Esse e-mail já está cadastrado.</p>";
+                $_SESSION['msg'] = " <p style='background: #FFC7CE; border-width: 0.5px; border-style: solid;
+        border-color: #7A0006; border-radius: 3px; color: #7A0006; padding: 8px 8px 8px 12px; margin-top:20px; margin-bottom: -30px'>Esse e-mail já está cadastrado.</p>";
             } else if ($dados['cpf'] === $row_usuario['cpf']) {
-                $_SESSION['msg'] = " <p style='color: red; margin-top:20px; margin-bottom: -30px'>Esse cpf já está cadastrado.</p>";
+                $_SESSION['msg'] = " <p style='background: #FFC7CE; border-width: 0.5px; border-style: solid;
+        border-color: #7A0006; border-radius: 3px; color: #7A0006; padding: 8px 8px 8px 12px; margin-top:20px; margin-bottom: -30px'>Esse cpf já está cadastrado.</p>";
             } else if ($dados['telefone'] === $row_usuario['telefone']) {
-                $_SESSION['msg'] = " <p style='color: red; margin-top:20px; margin-bottom: -30px'>Esse telefone já está cadastrado.</p>";
+                $_SESSION['msg'] = " <p style='background: #FFC7CE; border-width: 0.5px; border-style: solid;
+        border-color: #7A0006; border-radius: 3px; color: #7A0006; padding: 8px 8px 8px 12px; margin-top:20px; margin-bottom: -30px'>Esse telefone já está cadastrado.</p>";
             } else {
                 $result_usuario = "INSERT INTO  cuidador(nome, sobrenome, cpf, sexo, nascimento, email, senha, telefone, cep, rua,bairro, cidade, uf, numero, comp, created, nivel, espec)
             VALUES(
@@ -54,9 +57,10 @@ if ($btnCadastro) {
 
                 $resultado = mysqli_query($conn, $result_usuario);
                 if (mysqli_insert_id($conn)) {
-                    header("Location: sucessoCuidador.php");
+                    header("sucessoCuidador.php");
                 } else {
-                    $_SESSION['msg'] = " <p style='color: red; margin-top:20px; margin-bottom: -30px'>Erro ao cadastrar o usuário! Contate nosso suporte agora mesmo!</p>";
+                    $_SESSION['msg'] = " <p style='background: #FFC7CE; border-width: 0.5px; border-style: solid;
+                    border-color: #7A0006; border-radius: 3px; color: #7A0006; padding: 8px 8px 8px 12px; margin-top:20px; margin-bottom: -30px'>Erro ao cadastrar o usuário! Não foi possível conectar-se à base de dados.</p>";
                 }
             }
         }
@@ -66,11 +70,15 @@ if ($btnCadastro) {
         if ($busca_query) {
             $row_usuario = mysqli_fetch_assoc($busca_query);
             if ($dados['email'] === $row_usuario['email']) {
-                $_SESSION['msg'] = " <p style='color: red; margin-top:20px; margin-bottom: -30px'>Esse e-mail já está cadastrado.</p>";
+                $_SESSION['msg'] = " <p style='background: #FFC7CE; border-width: 0.5px; border-style: solid;
+                border-color: #7A0006; border-radius: 3px; color: #7A0006; padding: 8px 8px 8px 12px; margin-top:20px; margin-bottom: -30px'>Esse e-mail já está cadastrado.</p>";
             } else if ($dados['cpf'] === $row_usuario['cpf']) {
-                $_SESSION['msg'] = " <p style='color: red; margin-top:20px; margin-bottom: -30px'>Esse cpf já está cadastrado.</p>";
+                $_SESSION['msg'] = " <p style='background: #FFC7CE; border-width: 0.5px; border-style: solid;
+                border-color: #7A0006; border-radius: 3px; color: #7A0006; padding: 8px 8px 8px 12px; margin-top:20px; margin-bottom: -30px'>Esse cpf já está cadastrado.</p>";
+
             } else if ($dados['telefone'] === $row_usuario['telefone']) {
-                $_SESSION['msg'] = " <p style='color: red; margin-top:20px; margin-bottom: -30px'>Esse telefone já está cadastrado.</p>";
+                $_SESSION['msg'] = " <p style='background: #FFC7CE; border-width: 0.5px; border-style: solid;
+        border-color: #7A0006; border-radius: 3px; color: #7A0006; padding: 8px 8px 8px 12px; margin-top:20px; margin-bottom: -30px'>Esse telefone já está cadastrado.</p>";
             } else {
                 $result_usuario = "INSERT INTO  clientes(nome, sobrenome, cpf, sexo, nascimento, email, senha, telefone, cep, rua,bairro, cidade, uf, numero, comp, created, nivel)
             VALUES(
@@ -94,9 +102,10 @@ if ($btnCadastro) {
 
                 $resultado = mysqli_query($conn, $result_usuario);
                 if (mysqli_insert_id($conn)) {
-                    header("Location: sucessoCliente.php");
+                    header("Location: sucessoCuidador.php");
                 } else {
-                    $_SESSION['msg'] = " <p style='color: red; margin-top:20px; margin-bottom: -30px'>Erro ao cadastrar o usuário! Contate nosso suporte agora mesmo!</p>";
+                    $_SESSION['msg'] = " <p style='background: #FFC7CE; border-width: 0.5px; border-style: solid;
+                    border-color: #7A0006; border-radius: 3px; color: #7A0006; padding: 8px 8px 8px 12px; margin-top:20px; margin-bottom: -30px'>Erro ao cadastrar o usuário! Não foi possivel conectar-se à base de dados.</p>";
                 }
             }
         }
@@ -117,6 +126,7 @@ if ($btnCadastro) {
 
     <script type="text/javascript" src="js/validaform.js"></script>
     <script type="text/javascript" src="js/valida_cpf.js"></script>
+
 
 
 
@@ -299,7 +309,6 @@ if ($btnCadastro) {
 
                 <h6>
                     Ao clicar em “Cadastrar-se”, você aceita os Termos de Uso da Anjos da Guarda e confirma que leu a Política de Privacidade. Você também concorda em receber mensagens em seu e-mail, inclusive automáticas, provenientes da companhia e de suas afiliadas para fins informativos e/ou de marketing, no número que informou. A aceitação do recebimento de mensagens de marketing não é condição para usar os serviços da Anjos da Guarda. Você compreende que, para cancelar o recebimento, pode cancelá-los via e-mail.
-                </h6>
 
     </div>
     </fieldset>

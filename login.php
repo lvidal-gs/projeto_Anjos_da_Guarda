@@ -1,7 +1,8 @@
 <?php
 session_start();
-?>
+ob_start();
 
+?>
 <!DOCTYPE html>
 
 <head>
@@ -36,12 +37,12 @@ session_start();
                 <div class="">
                     <label for="op1" class="radio" required>
                         <input type="radio" name="escolha" id="op1" class="hidden" value="P" />
-                        <span class="label"></span>Profissional - Cuidador
+                        <span class="label"></span>Sou um profissional/cuidador
                     </label>
 
                     <label for="op2" class="radio">
                         <input type="radio" name="escolha" id="op2" class="hidden" value="C" />
-                        <span class="label"></span>Cliente
+                        <span class="label"></span>Sou cliente
                     </label>
                 </div>
             </div>

@@ -8,10 +8,10 @@ session_start();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="img/anjos_da_guarda_logo_favicon.png" />
-
-    <link rel="stylesheet" href="css/styles.css">
-
+    <link rel="stylesheet" href="css/busca.css">
+    <link rel="stylesheet" href="css/hamburguer.css"/>
+    <link rel="shortcut icon" href="img/anjos_da_guarda_logo_favicon.png" >
+    <script type="text/javascript" src="js/animacao_hamb.js"></script>
 
     <title>Meu Perfil</title>
 </head>
@@ -19,31 +19,33 @@ session_start();
 <body>
 
     <nav>
-        <a href="index.php"> <img src="img/anjos_da_guarda_logo_nomeLateral.png" width="290px" style="margin-right: -200px;"> </a>
-        <span>
-            <ul>
-                <li><a href="#">Buscar Cuidador</li>
-                <li><a href="perfilPro">Meu Perfil</a></li>
-                <li><a href="#">Fale Conosco</a></li>
-            </ul>
-        </span>
-
-
-        <div>
-            <?php
-            echo "<teste style='color: var(--nav-color); font-weight: bolder;font-size: 15px;'>Bem-vindo(a) ".$_SESSION['nome']."!</teste>";
+    <header>
+    <a href="index.php"><img src="img/anjos_da_guarda_logo_nomeLateral.png"></a>
+        <div id="menu">
+            <div id="menu-bar" onclick="menuOnClick()">
+                <div id="bar1" class="bar"></div>
+                <div id="bar2" class="bar"></div>
+                <div id="bar3" class="bar"></div>
+            </div>
             
-            ?>
-            <a href="sair.php" class="botao">
-                <strong>Sair</strong>
-            </a>
+            <nav class="nav" id="nav">
+                <ul>
+                    <li><a href="index.php">Home</a></li>
+                    <li><a href="telaBusca.php">Buscar</a></li>
+                    <li><a href="perfilCliente.php">Meu Perfil</a></li>
+                    <li><a href="editarPerfil_cliente.php">Editar perfil</a></li>
+                    <li><a href="contato.php">Fale Conosco</a></a></li>
+                    <li><a href="sair.php">Sair</a></li>
+                </ul>
+            </nav>
         </div>
 
-    </nav>
-    <br><br><br><br>
+        <div class="menu-bg" id="menu-bg"></div>
 
-    <main>
+    </header>
 
+    <div class="hero">
+    <main class="container">
         <div class="dados">
             <img src="img/default_photo.png" alt="image">
             <div class="info">
@@ -88,7 +90,7 @@ session_start();
     </main>
 
 
-
+    </div>
 </body>
 
 </html>
@@ -100,20 +102,19 @@ session_start();
         flex-direction: column;
         align-items: center;
         justify-content: space-evenly;
-        border: solid 1.75px #3980a8;
         box-shadow: none;
     }
 
     .dados {
-        margin: 10px 10px 0 -200px;
+        width: 75%;
         display: flex;
+        position: relative;
         align-items: center;
         justify-content: space-evenly;
     }
 
 
     .dados img {
-        margin: 10px 10px 0 -100px;
         width: 160px;
         padding: 5px 5px;
         border: solid 2px #fd4d56;
