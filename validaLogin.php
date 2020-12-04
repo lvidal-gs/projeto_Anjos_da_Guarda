@@ -17,27 +17,17 @@ if ($btnLogin) { //se o botão for acionado...
                 if (password_verify($senha, $row_usuario['senha'])) { //lê-se: SE A SENHA DIGITADA FOR IGUAL A DO BANCO, FAÇA...
                     $_SESSION['id'] = $row_usuario['id'];
                     $_SESSION['nome'] = $row_usuario['nome'];
-                    $_SESSION['sobrenome'] = $row_usuario['sobrenome'];
                     $_SESSION['email'] =  $row_usuario['email'];
-                    $_SESSION['telefone'] = $row_usuario['telefone'];
-                    $_SESSION['uf'] = $row_usuario['uf'];
-                    $_SESSION['cidade'] = $row_usuario['cidade'];
-                    $_SESSION['bairro'] = $row_usuario['bairro'];
-                    $_SESSION['nvl'] = $row_usuario['nivel'];
-                    $_SESSION['espec'] = $row_usuario['espec'];
+                    $_SESSION['imagem'] =  $row_usuario['imagem'];
 
                     header("Location: perfilPro.php");
-                } else {
+
+                } else{
                     $_SESSION['msg'] = "<p style='background: #FFC7CE; border-width: 0.5px; border-style: solid;
-        border-color: #7A0006; border-radius: 3px; color: #7A0006; padding: 8px 8px 8px 12px'>Login ou senha incorretos.</p><br>";
+                    border-color: #7A0006; border-radius: 3px; color: #7A0006; padding: 8px 8px 8px 12px'>Login ou senha incorretos.</p><br>";
                     header("Location: login.php");
                 }
-            } else {
-                $_SESSION['msg'] = "<p style='background: #FFC7CE; border-width: 0.5px; border-style: solid;
-        border-color: #7A0006; border-radius: 3px; color: #7A0006; padding: 8px 8px 8px 12px'>Usuário não encontrado</p><br>"; //cria a variavel global 
-                header("Location: login.php");
-            }
-
+            } 
         } else {
             $result_usuario = "SELECT * FROM clientes WHERE email = '$email' LIMIT 1";
             $resultado = mysqli_query($conn, $result_usuario);
@@ -47,25 +37,16 @@ if ($btnLogin) { //se o botão for acionado...
                 if (password_verify($senha, $row_usuario['senha'])) { //lê-se: SE A SENHA DIGITADA FOR IGUAL A DO BANCO, FAÇA...
                     $_SESSION['id'] = $row_usuario['id'];
                     $_SESSION['nome'] = $row_usuario['nome'];
-                    $_SESSION['sobrenome'] = $row_usuario['sobrenome'];
                     $_SESSION['email'] =  $row_usuario['email'];
-                    $_SESSION['telefone'] = $row_usuario['telefone'];
-                    $_SESSION['uf'] = $row_usuario['uf'];
-                    $_SESSION['cidade'] = $row_usuario['cidade'];
-                    $_SESSION['bairro'] = $row_usuario['bairro'];
-                    $_SESSION['nvl'] = $row_usuario['nivel'];
-
+                    $_SESSION['imagem'] =  $row_usuario['imagem'];
                     header("Location: perfilCliente.php");
+                    
                 } else {
                     $_SESSION['msg'] = "<p style='background: #FFC7CE; border-width: 0.5px; border-style: solid;
-        border-color: #7A0006; border-radius: 3px; color: #7A0006; padding: 8px 8px 8px 12px'>Login ou senha incorretos.</p><br>";
+                    border-color: #7A0006; border-radius: 3px; color: #7A0006; padding: 8px 8px 8px 12px'>Login ou senha incorretos.</p><br>";
                     header("Location: login.php");
                 }
-            } else {
-                $_SESSION['msg'] = "<p style='background: #FFC7CE; border-width: 0.5px; border-style: solid;
-        border-color: #7A0006; border-radius: 3px; color: #7A0006; padding: 8px 8px 8px 12px'>Usuário não encontrado.</p><br>"; //cria a variavel global 
-                header("Location: login.php");
-            }
+            } 
         }
     
     } else if ((empty($email)) and (!empty($senha)) and (!empty($escolha))) {

@@ -49,7 +49,7 @@
   }
   
   .nav li a:hover {
-    font-weight: bold;
+    font-weight: bolder;
   }
   
   .menu-bg, #menu {
