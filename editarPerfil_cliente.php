@@ -44,7 +44,6 @@ $row_usuario = mysqli_fetch_assoc($query_busca);
 
                 <nav class="nav" id="nav">
                     <ul>
-                        <li><a href="index.php">Home</a></li>
                         <li><a href="telaBusca.php">Buscar</a></li>
                         <li><a href="perfilCliente.php">Meu Perfil</a></li>
                         <li><a href="editarPerfil_cliente.php">Editar perfil</a></li>

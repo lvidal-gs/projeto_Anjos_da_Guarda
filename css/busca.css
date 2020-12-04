@@ -113,6 +113,7 @@ header img#foto{
     /*JUSTIFY = HOR "=". && ALIGN = VER. "||"*/
     background-color: var(--nav-color);
     margin-top: -20px;
+    margin-bottom: 25px;
     display: flex;
     width: 45%;
     flex-flow: column nowrap;

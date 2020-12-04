@@ -12,7 +12,8 @@ $valor_nome = $_GET['filtro_nome'];
 $valor_zona = $_GET['filtro_zona'];
 $valor_nece = $_GET['filtro_nece'];
 
-if($valor_nece == 0){}
+if ($valor_nece == 0) {
+}
 $cuidador = "SELECT c.*, e.`relacao`
             FROM cuidador AS c 
             JOIN especialidades AS e
@@ -78,14 +79,15 @@ $total_cuidadores =  mysqli_num_rows($query_resultado);
             <?php if ($_SESSION['imagem'] == NULL) { ?>
                 <li style="list-style: none;"><img id="foto" style="list-style: none; display: relative; border-width: 2px; border-style: solid;  border-color: var(--nav-color); margin-right: -800px; width: 60px; height: 60px; border-radius: 100%;" src="img/default_photo.png" alt="image"></li>
             <?php } else { ?>
-                <li style="list-style: none; > <img id=" foto" style="list-style: none; display: relative; border-width: 2px; border-style: solid;  border-color: var(--nav-color); margin-right: -800px;width: 60px; height: 60px; border-radius: 100%;" src="<?php echo "uploads/" . $_SESSION['imagem'] . " " ?>" style="" />
+                <li style="list-style: none;"> <img id=" foto" style="list-style: none; display: relative; border-width: 2px; border-style: solid;  border-color: var(--nav-color); margin-right: -800px;width: 60px; height: 60px; border-radius: 100%;" src="<?php echo "uploads/" . $_SESSION['imagem'] . " " ?>" />
                 </li>
             <?php } ?>
         </div>
-        <div>
 
+        <div>
             <li style="display: relative; font-size: 14pt; list-style: none; margin-right: -1000px; margin-top: 5px;font-weight: bolder">Bem-vindo(a), <?php echo $_SESSION['nome'] ?></li>
         </div>
+
         <div id="menu">
             <div id="menu-bar" onclick="menuOnClick()">
                 <div id="bar1" class="bar"></div>
@@ -95,8 +97,7 @@ $total_cuidadores =  mysqli_num_rows($query_resultado);
 
             <nav class="nav" id="nav">
                 <ul>
-                    <li><a href="index.php">Home</a></li>
-                    <li><a href="telaBusca.php">Buscar</a></li>
+                    <li><a href="telaBusca.php">Buscar Cuidador</a></li>
                     <li><a href="perfilCliente.php">Meu Perfil</a></li>
                     <li><a href="editarPerfil_cliente.php">Editar perfil</a></li>
                     <li><a href="contato.php">Fale Conosco</a></a></li>
@@ -233,7 +234,7 @@ $total_cuidadores =  mysqli_num_rows($query_resultado);
                             <main class="container-modal">
                                 <div class="dados">
                                     <?php if ($row_usuario['imagem'] == NULL) { ?>
-                                        <img src="img/default_photo.png"  style="width: 210px; height: 210px; border-radius: 100%; border-width: 2px; border-style: solid;  border-color: var(--primary-color);" alt="image">
+                                        <img src="img/default_photo.png" style="width: 210px; height: 210px; border-radius: 100%; border-width: 2px; border-style: solid;  border-color: var(--primary-color);" alt="image">
                                     <?php } else { ?>
                                         <img id="preview" src="<?php echo "uploads/" . $row_usuario['imagem'] . " " ?>" style="width: 210px; height: 210px; border-radius: 100%; border-width: 2px; border-style: solid;  border-color: var(--primary-color);" />
                                     <?php } ?>

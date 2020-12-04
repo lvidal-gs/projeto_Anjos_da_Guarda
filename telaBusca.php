@@ -77,7 +77,6 @@ $total_cuidadores =  mysqli_num_rows($query_resultado);
 
       <nav class="nav" id="nav">
         <ul>
-          <li><a href="index.php">Home</a></li>
           <li><a href="telaBusca.php">Buscar</a></li>
           <li><a href="perfilCliente.php">Meu Perfil</a></li>
           <li><a href="editarPerfil_cliente.php">Editar perfil</a></li>
@@ -273,8 +272,9 @@ $total_cuidadores =  mysqli_num_rows($query_resultado);
                     <?php echo "<p style='font-size: 14pt;'>" . $row_usuario['descExp'] . "</p style='font-size: 14pt;'>" ?>
                   </section>
                 </div>
+
                 <?php if (($row_usuario['site'] != NULL) || ($row_usuario['facebook'] != NULL) || ($row_usuario['instagram'] != NULL)) { ?>
-                  <div id="contato" class="sobre">
+                  <div class="sobre">
                     <section>
                       <h2 style="margin-left: -30px">Outros contatos</h2>
                       <?php if ($row_usuario['site'] != NULL) {
@@ -297,7 +297,7 @@ $total_cuidadores =  mysqli_num_rows($query_resultado);
                     </section>
                   </div>
                 <?php } else {
-                  echo "<section id='contato' type='hidden'></section>";
+                  echo "<section type='hidden'></section>";
                 } ?>
 
                 <?php
