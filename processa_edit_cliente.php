@@ -43,7 +43,7 @@ $query_editar = mysqli_query($conn, $editar);
 
 if(mysqli_affected_rows($conn)){
     $_SESSION['msg'] = $msg = "<p style='background: #B2D0EC; border-width: 0.5px; border-style: solid;
-    border-color: #1F4E78; border-radius: 3px; color: #1F4E78; padding: 8px 8px 8px 12px'>Alterações salvas com sucesso!</p> <br>";
+    border-color: #1F4E78; border-radius: 3px; color: #1F4E78; padding: 8px 8px 8px 12px'>Alterações salvas com sucesso! 🥳</p> <br>";
     header("Location: editarPerfil_cliente.php");
 }else{
     $msg = " <p style='background: #FFC7CE; border-width: 0.5px; border-style: solid;

@@ -16,32 +16,35 @@ $query_busca = mysqli_query($conn, $cliente);
 <html lang="pt-br">
 
 <head>
-    <meta charset="UTF-8">
+<meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/busca.css">
     <link rel="stylesheet" href="css/hamburguer.css" />
     <link rel="shortcut icon" href="img/anjos_da_guarda_logo_favicon.png">
     <script type="text/javascript" src="js/animacao_hamb.js"></script>
-
     <title>Cliente - Meu Perfil</title>
 </head>
 
 <body>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
     <nav>
         <header>
             <a href="index.php"><img src="img/anjos_da_guarda_logo_nomeLateral.png"></a>
             <div>
                 <?php while ($row_usuario = mysqli_fetch_assoc($query_busca)) { ?>
-                    <?php if ($_SESSION['imagem'] == NULL) { ?>
-                        <li><img style="display: relative; border-width: 2px; border-style: solid;  border-color: var(--nav-color); margin-right: -800px;width: 60px; height: 60px; border-radius: 100%;" src="img/default_photo.png" alt="image"></li>
+                    <?php if ($row_usuario['imagem'] == NULL) { ?>
+                        <li><img style="display: relative; border-width: 2px; border-style: solid;  border-color: var(--nav-color); margin-left: -2000px;width: 60px; height: 60px; border-radius: 100%;" src="img/default_photo.png" alt="image"></li>
                     <?php } else { ?>
-                        <li> <img id="foto" style="display: relative; border-width: 2px; border-style: solid;  border-color: var(--nav-color); margin-right: -800px;width: 60px; height: 60px; border-radius: 100%;" src="<?php echo "uploads/" . $_SESSION['imagem'] . " " ?>" style="" /></li>
+                        <li> <img id="foto" style="display: relative; border-width: 2px; border-style: solid;  border-color: var(--nav-color); margin-left: -2000px; width: 60px; height: 60px; border-radius: 100%;" src="<?php echo "uploads/" . $row_usuario['imagem'] . " " ?>" style="" /></li>
                     <?php } ?>
             </div>
             <div>
 
-                <li style="display: relative; font-size: 14pt; list-style: none; margin-right: -1000px; margin-top: 5px;font-weight: bolder">Bem-vindo(a), <?php echo $_SESSION['nome'] ?></li>
+                <li style="display: relative; font-size: 14pt; list-style: none; margin-left: -1750px; margin-top: 5px;font-weight: bolder">Bem-vindo(a), <?php echo $_SESSION['nome'] ?></li>
             </div>
             <div id="menu">
                 <div id="menu-bar" onclick="menuOnClick()">
@@ -52,11 +55,10 @@ $query_busca = mysqli_query($conn, $cliente);
 
                 <nav class="nav" id="nav">
                     <ul>
-                        <li><a href="#">Home</a></li>
                         <li><a href="telaBusca.php">Buscar</a></li>
                         <li><a href="perfilCliente.php">Meu Perfil</a></li>
-                        <li><a href="editarPerfil_cliente.php">Editar perfil</a></li>
-                        <li><a href="contato.php">Fale Conosco</a></a></li>
+                        <li><a href="editarPerfil_cliente.php">Editar Perfil</a></li>
+                        <li><a href="contato_cliente.php">Fale Conosco</a></a></li>
                         <li><a href="sair.php">Sair</a></li>
                     </ul>
                 </nav>
@@ -67,7 +69,7 @@ $query_busca = mysqli_query($conn, $cliente);
         </header>
 
         <div class="hero">
-            <main class="container">
+            <main style="margin-top: 80px;" class="container">
 
                 <div class="dados">
                     <?php if ($row_usuario['imagem'] == NULL) { ?>
@@ -112,10 +114,39 @@ $query_busca = mysqli_query($conn, $cliente);
                         <?php echo "<p>" . $row_usuario['descObs'] . "</p>" ?>
                     </section>
                 </div>
+
+                <?php if ($row_usuario['cep'] == NULL) { ?>
+                    
+                    <script>
+                        $(document).ready(function() {
+                            $('#msgcad').modal('show');
+                        });
+                    </script>
+                    <div class="modal fade" id="msgcad" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel">
+                        <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="staticBackdropLabel">Edite o seu perfil</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    Muito bem, <?php echo $row_usuario['nome']; ?>! Agora que você já está cadastradado, que tal editar seu perfil? Vamos lá? 😄
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Agora não</button>
+                                    <a href="editarPerfil_cliente.php"><button id="btnmodal" type="button" class="btn btn-primary">Vamos lá!</button></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <?php } ?>
             <?php } ?>
             </main>
         </div>
-        <footer style="margin-top: -50px">
+        <footer style="margin-top: 10px">
             <p>
                 <a href="https://www.facebook.com/centropaulasouza" target="_blank">
                     <img src="img/face.png" width="23px">

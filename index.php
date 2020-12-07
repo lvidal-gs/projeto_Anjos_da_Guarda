@@ -8,7 +8,7 @@ session_start();
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=yes">
     <link rel="shortcut icon" href="img/anjos_da_guarda_logo_favicon.png" />
     <link rel="stylesheet" href="css/styles.css">
 
@@ -81,7 +81,7 @@ session_start();
                 Ficou interessado e quer contratar um dos nossos cuidadores? Converse agora mesmo com um dos nossos profissionais cadastrados e veja quem atende melhor suas necessidades. Não perca tempo e acabe agora mesmo com suas preocupações clicando no botão abaixo! 
             </h2>
             <br>
-            <a href="" class="botao">
+            <a href="login.php" class="botao">
                 <strong>Encontre um cuidador</strong>
             </a>
         </div>
@@ -111,7 +111,7 @@ session_start();
             <h1>Fale Conosco</h1><br><br>
             <h2 style="margin-top: -20px; margin-bottom: -30px;">Precisa falar conosco? Envie-nos uma mensagem!</h2>
             <br>
-            <form method="POST" action="">
+            <form method="POST" action="processa.php">
                 <h1 style="text-align: center; margin-top: -35px;">Contato</h1><br><br>
                 <h6 style="text-align: right;">Preenchimento obrigatório (*)</h6><br>
 

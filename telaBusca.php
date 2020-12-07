@@ -3,6 +3,14 @@ session_start();
 ob_start();
 
 
+$cliente = "SELECT c.*, n.`rel_espec` 
+            FROM clientes AS c 
+            JOIN necessidades AS n 
+            ON n.`id_necessidade` = c.`necessidade` 
+            WHERE id = '" . $_SESSION['id'] . "' ";
+$query_busca_cliente = mysqli_query($conn, $cliente);
+
+
 //PEGA O VALOR NA URL
 $pagina = (isset($_GET['pagina'])) ? $_GET['pagina'] : 1;
 $cuidador = "SELECT c.*, e.`relacao`
@@ -27,8 +35,6 @@ $resultado = "SELECT c.*, e.`relacao`
               LIMIT $inicio, $quantidade_por_pagina";
 $query_resultado = mysqli_query($conn, $resultado);
 $total_cuidadores =  mysqli_num_rows($query_resultado);
-
-
 ?>
 
 <!doctype html>
@@ -55,18 +61,20 @@ $total_cuidadores =  mysqli_num_rows($query_resultado);
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
   <header>
+
+  <?php while ($row_usuario_cliente = mysqli_fetch_assoc($query_busca_cliente)) { ?>
     <a href="index.php"><img src="img/anjos_da_guarda_logo_nomeLateral.png"></a>
     <div>
-      <?php if ($_SESSION['imagem'] == NULL) { ?>
-        <li style="list-style: none;"><img id="foto" style="list-style: none; display: relative; border-width: 2px; border-style: solid;  border-color: var(--nav-color); margin-right: -800px; width: 60px; height: 60px; border-radius: 100%;" src="img/default_photo.png" alt="image"></li>
+      <?php if ($row_usuario_cliente == NULL) { ?>
+        <li style="list-style: none;"><img id="foto" style="list-style: none; display: relative; border-width: 2px; border-style: solid;  border-color: var(--nav-color); margin-left: -2000px; width: 60px; height: 60px; border-radius: 100%;" src="img/default_photo.png" alt="image"></li>
       <?php } else { ?>
-        <li style="list-style: none;" > <img id=" foto" style="list-style: none; display: relative; border-width: 2px; border-style: solid;  border-color: var(--nav-color); margin-right: -800px;width: 60px; height: 60px; border-radius: 100%;" src="<?php echo "uploads/" . $_SESSION['imagem'] . " " ?>" />
+        <li style="list-style: none;" > <img id=" foto" style="list-style: none; display: relative; border-width: 2px; border-style: solid;  border-color: var(--nav-color); margin-left: -2000px;width: 60px; height: 60px; border-radius: 100%;" src="<?php echo "uploads/" .$row_usuario_cliente['imagem'] . " " ?>" />
         </li>
       <?php } ?>
     </div>
     <div>
 
-      <li style="display: relative; font-size: 14pt; list-style: none; margin-right: -1000px; margin-top: 5px;font-weight: bolder">Bem-vindo(a), <?php echo $_SESSION['nome'] ?></li>
+      <li style="display: relative; font-size: 14pt; list-style: none; margin-left: -1750px; margin-top: 5px;font-weight: bolder">Bem-vindo(a), <?php echo $row_usuario_cliente['nome'] ?></li>
     </div>
     <div id="menu">
       <div id="menu-bar" onclick="menuOnClick()">
@@ -79,13 +87,13 @@ $total_cuidadores =  mysqli_num_rows($query_resultado);
         <ul>
           <li><a href="telaBusca.php">Buscar</a></li>
           <li><a href="perfilCliente.php">Meu Perfil</a></li>
-          <li><a href="editarPerfil_cliente.php">Editar perfil</a></li>
-          <li><a href="contato.php">Fale Conosco</a></a></li>
+          <li><a href="editarPerfil_cliente.php">Editar Perfil</a></li>
+          <li><a href="contato_cliente.php">Fale Conosco</a></a></li>
           <li><a href="sair.php">Sair</a></li>
         </ul>
       </nav>
     </div>
-
+      <?php } ?>
     <div class="menu-bg" id="menu-bg"></div>
   </header>
 
@@ -94,7 +102,7 @@ $total_cuidadores =  mysqli_num_rows($query_resultado);
     <h3>Veja aquele que melhor se adapte às suas necessidades</h3> <br>
 
     <!-- BOTAO FILTRO MODAL -->
-    <button id="btnvisu" type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#staticBackdrop">
+    <button id="btnvisu" type="button" class="btn btn-primary" data-toggle="modal" data-target="#staticBackdrop">
       Filtros de Pesquisa
     </button><br>
 
@@ -127,6 +135,11 @@ $total_cuidadores =  mysqli_num_rows($query_resultado);
               <div class="form-group">
                 <label for="recipient-name" class="col-form-label">Nome do cuidador: </label>
                 <input type="text" name="filtro_nome" class="form-control text-center" placeholder="Insira o nome do cuidador" id="recipient-name">
+              </div>
+
+              <div class="form-group">
+                <label for="recipient-name" class="col-form-label">Sobrenome do cuidador: </label>
+                <input type="text" name="filtro_sobrenome" class="form-control text-center" placeholder="Insira o sobrenome do cuidador" id="recipient-name">
               </div>
 
               <div class="form-group">

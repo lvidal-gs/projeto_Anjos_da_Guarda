@@ -12,6 +12,7 @@ $query_busca = mysqli_query($conn, $cliente);
 $row_usuario = mysqli_fetch_assoc($query_busca);
 ?>
 
+
 <!DOCTYPE html>
 <html>
 
@@ -46,8 +47,8 @@ $row_usuario = mysqli_fetch_assoc($query_busca);
                     <ul>
                         <li><a href="telaBusca.php">Buscar</a></li>
                         <li><a href="perfilCliente.php">Meu Perfil</a></li>
-                        <li><a href="editarPerfil_cliente.php">Editar perfil</a></li>
-                        <li><a href="contato.php">Fale Conosco</a></a></li>
+                        <li><a href="editarPerfil_cliente.php">Editar Perfil</a></li>
+                        <li><a href="contato_cliente.php">Fale Conosco</a></a></li>
                         <li><a href="sair.php">Sair</a></li>
                     </ul>
                 </nav>
@@ -55,12 +56,11 @@ $row_usuario = mysqli_fetch_assoc($query_busca);
 
             <div class="menu-bg" id="menu-bg"></div>
             <a href="index.php">
-                <img src="img/anjos_da_guarda_logo_sf" width="225px">
+            <img src="img/anjos_da_guarda_logo_sf.png" width="225px">
             </a>
 
-            <a id="setinha" href="index.php">
-                <img src="img/arrow.svg" alt="" height="12px">
-                Voltar para home
+            <a id="setinha" href="perfilCliente.php">
+                <img src="img/arrow.svg" alt="" height="12px">Voltar para meu perfil
             </a>
         </header>
         <form name="formulario" action="processa_edit_cliente.php" enctype="multipart/form-data" method="POST">
@@ -117,16 +117,16 @@ $row_usuario = mysqli_fetch_assoc($query_busca);
                 <h2 style="margin-top: -40px;">Descrição de Perfil</h2><br>
                 <div class="field">
                     <label for="sobre">Descrição de Serviço <t style="font-size:10pt;">(Até 400 caracteres)</t> </label>
-                    <textarea maxlength="400" name="sobre" style="resize: none" id="sobre" rows="8" placeholder="Fale um pouco sobre o serviço cujo precisa"><?php echo $row_usuario['descServ']; ?> </textarea>
+                    <textarea maxlength="400" name="sobre" style="resize: none" id="sobre" rows="8" placeholder="Fale um pouco sobre o serviço cujo precisa"><?php echo $row_usuario['descServ'];?></textarea>
 
                 </div>
                 <div class="field">
                     <label for="formacao">Requisitos necessários <t style="font-size:10pt;">(Até 400 caracteres)</t></label>
-                    <textarea maxlength="400" name="requisitos" style="resize: none" id="formacao" rows="8" placeholder="Quais os requisitos que você quer que seu cuidador atenda? (Ex.: Ter experiencia de 5 anos na área de cuidados, ter disponibilidade aos finais de semana, etc.)"><?php echo $row_usuario['descNece']; ?></textarea>
+                    <textarea maxlength="400" name="requisitos" style="resize: none" id="formacao" rows="8" placeholder="Quais os requisitos que você quer que seu cuidador atenda? (Ex.: Ter experiencia de 5 anos na área de cuidados, ter disponibilidade aos finais de semana, etc.)"><?php echo $row_usuario['descNece'];?></textarea>
                 </div>
                 <div class="field">
                     <label for="obs">Observações <t style="font-size:10pt;">(Até 400 caracteres)</t></label>
-                    <textarea name="obs" maxlength="400" style="resize: none" id="exp" rows="8" placeholder="Coloque aqui mais detalhes do serviço"><?php echo $row_usuario['descObs']; ?></textarea>
+                    <textarea name="obs" maxlength="400" style="resize: none" id="exp" rows="8" placeholder="Coloque aqui mais detalhes do serviço"><?php echo $row_usuario['descObs'];?></textarea>
                 </div>
             </fieldset>
 
@@ -238,5 +238,13 @@ $row_usuario = mysqli_fetch_assoc($query_busca);
         </script>
     </div>
 </body>
+<?php echo "<a href='proc_apagar_cliente.php?id=".$row_usuario['id']."' class='btn btn-dark btn-sm' data-confirm='data-confirm='Tem certeza de que deseja excluir o seu perfil? Essa é uma ação irreversível!'>Eu quero excluir minha conta.</a>"; ?>
 
+<script src="js/personalizado.js"></script>	
+
+<style>
+    a.btn.btn-dark.btn-sm {
+        margin: 0 0 20px 10px;
+    }
+</style>
 </html>

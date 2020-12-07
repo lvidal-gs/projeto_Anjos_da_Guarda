@@ -17,7 +17,7 @@ ob_start();
         <header>
 
             <a href="index.php">
-                <img src="img/anjos_da_guarda_logo_sf" width="225px">
+            <img src="img/anjos_da_guarda_logo_sf.png" width="225px">
             </a>
 
             <a href="index.php">
@@ -66,7 +66,6 @@ ob_start();
             </fieldset>
 
             <p class="sublink">Ainda não é cadastrado? <a href="cadastro.php">Clique aqui</a>.</p>
-            <p class="sublink">Esqueceu sua senha? <a href="#">Clique aqui</a>.</p>
             <input style ="margin-bottom: -25px" class="button" name="btnLogin" type="submit" value="Entrar"></input>
         </form>
     </div>

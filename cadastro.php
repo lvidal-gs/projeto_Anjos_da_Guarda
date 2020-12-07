@@ -31,7 +31,6 @@ if ($btnCadastro) {
                 $usuario = "INSERT INTO  cuidador
                 VALUES(
                 DEFAULT,
-                DEFAULT,
                 '" . $dados['nome'] . "',
                 '" . $dados['sobrenome'] . "', 
                 '" . $dados['cpf'] . "',
@@ -58,7 +57,8 @@ if ($btnCadastro) {
                 DEFAULT,
                 DEFAULT,
                 now(),
-                NULL)";
+                NULL,
+                DEFAULT)";
                 
                 $query_usuario = mysqli_query($conn, $usuario);
                 if (mysqli_insert_id($conn)) {
@@ -153,7 +153,7 @@ if ($btnCadastro) {
         <header>
 
             <a href="index.php">
-                <img src="img/anjos_da_guarda_logo_sf" width="225px">
+                <img src="img/anjos_da_guarda_logo_sf.png" width="225px">
             </a>
 
             <a href="index.php">
