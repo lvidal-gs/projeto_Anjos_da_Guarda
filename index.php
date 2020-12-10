@@ -62,7 +62,7 @@ session_start();
 
     <main>
         <div id="cliente" class="content">
-            
+
             <h1>Nossos clientes</h1><br><br>
             <h2>
                 Como nosso cliente você pode encontrar um cuidador que preste serviços personalizados de acordo com suas
@@ -70,7 +70,7 @@ session_start();
                 Nossos profissionais são capacitados e possuimos diversas especialidades.
             </h2>
             <br>
-            
+
             <div class="especialidades">
                 <h2>Nossa plataforma oferece:</h2> <br>
                 <img src="img/especialidades.png" alt="" width="100%">
@@ -78,7 +78,9 @@ session_start();
             </div>
             <br>
             <h2>
-                Ficou interessado e quer contratar um dos nossos cuidadores? Converse agora mesmo com um dos nossos profissionais cadastrados e veja quem atende melhor suas necessidades. Não perca tempo e acabe agora mesmo com suas preocupações clicando no botão abaixo! 
+                Ficou interessado e quer contratar um dos nossos cuidadores? Converse agora mesmo com um dos nossos
+                profissionais cadastrados e veja quem atende melhor suas necessidades. Não perca tempo e acabe agora
+                mesmo com suas preocupações clicando no botão abaixo!
             </h2>
             <br>
             <a href="login.php" class="botao">
@@ -118,7 +120,7 @@ session_start();
                 <div class="field-group">
                     <div class="field">
                         <label for="name">Nome *</label>
-                        <input type="text" onchange="return teste()"name="nome" id="name" placeholder="Insira seu nome">
+                        <input type="text" onchange="return teste()" name="nome" id="name" placeholder="Insira seu nome">
                     </div>
 
                     <div class="field">
@@ -138,8 +140,8 @@ session_start();
                 <br>
 
                 <h6>A mensagem será lida por um de nossos funcionários. A resposta poderá demorar até 3 dias úteis para
-                ser respondida.</h6>
-                <input class="button"  name="btnEnvia" type="submit" value="Enviar mensagem"></input>
+                    ser respondida.</h6>
+                <input class="button" name="btnEnvia" type="submit" value="Enviar mensagem"></input>
             </form>
         </div>
     </main>
@@ -155,8 +157,7 @@ session_start();
                 <img src="img/Insta.png" width="23px">
                 Instagram
             </a>
-            <a href="https://twitter.com/paulasouzasp?ref_src=twsrc%5Egoogle%7Ctwcamp%5Eserp%7Ctwgr%5Eauthor"
-                target="_blank">
+            <a href="https://twitter.com/paulasouzasp?ref_src=twsrc%5Egoogle%7Ctwcamp%5Eserp%7Ctwgr%5Eauthor" target="_blank">
                 <img src="img/twitter.png" width="23px">
                 Twitter
             </a>

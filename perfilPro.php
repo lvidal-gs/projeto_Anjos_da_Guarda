@@ -23,23 +23,19 @@ $query_busca = mysqli_query($conn, $cuidador);
     <link rel="stylesheet" href="css/hamburguer.css" />
     <link rel="shortcut icon" href="img/anjos_da_guarda_logo_favicon.png">
     <script type="text/javascript" src="js/animacao_hamb.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
     <title>Cuidador - Meu Perfil</title>
 </head>
 
 <body>
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-
     <nav>
         <header>
             <a href="index.php"><img src="img/anjos_da_guarda_logo_nomeLateral.png"></a>
-
             <div>
                 <?php while ($row_usuario = mysqli_fetch_assoc($query_busca)) { ?>
-
-
                     <?php if ($row_usuario['imagem'] == NULL) { ?>
                         <li><img style="display: relative; border-width: 2px; border-style: solid;  border-color: var(--nav-color); margin-left: -2000px; width: 60px; height: 60px; border-radius: 100%;" src="img/default_photo.png" alt="image"></li>
                     <?php } else if ($row_usuario['imagem'] != NULL) { ?>
@@ -47,7 +43,6 @@ $query_busca = mysqli_query($conn, $cuidador);
                     <?php } ?>
             </div>
             <div>
-
                 <li style="display: relative; font-size: 14pt; list-style: none; margin-left: -1750px; margin-top: 5px;font-weight: bolder">Bem-vindo(a), <?php echo $_SESSION['nome'] ?></li>
             </div>
             <div id="menu">
@@ -56,7 +51,6 @@ $query_busca = mysqli_query($conn, $cuidador);
                     <div id="bar2" class="bar"></div>
                     <div id="bar3" class="bar"></div>
                 </div>
-
                 <nav class="nav" id="nav">
                     <ul>
                         <li><a href="perfilPro.php">Meu Perfil</a></li>
@@ -66,25 +60,18 @@ $query_busca = mysqli_query($conn, $cuidador);
                     </ul>
                 </nav>
             </div>
-
             <div class="menu-bg" id="menu-bg"></div>
-
         </header>
-
         <div class="hero">
             <main style="margin-top: 80px;" class="container">
-                
-
                 <div class="dados">
                     <?php if ($row_usuario['imagem'] == NULL) { ?>
                         <img src="img/default_photo.png" alt="image" style="width: 150px; height: 150px; border-radius: 100%; border-width: 2px; border-style: solid;  border-color: var(--primary-color);">
                     <?php } else { ?>
                         <img id="preview" src="<?php echo "uploads/" . $row_usuario['imagem'] . " " ?>" style="width: 150px; height: 150px; border-radius: 100%; border-width: 2px; border-style: solid;  border-color: var(--primary-color);" />
                     <?php } ?>
-
                     <div class="info">
                         <h1 style='font-size: 22pt;'><?php echo "" . $row_usuario['nome'] . " " . $row_usuario['sobrenome'] . ""; ?> </h1>
-
                         <?php if ($row_usuario['cep'] != NULL) { ?>
                             <h3 style='color: var(--text-color); font-size: 12pt;'>
                                 <?php echo "Reside em: " . $row_usuario['uf'] . "-" . $row_usuario['cidade'] . ", " . $row_usuario['bairro'] . "."; ?> </h3>
@@ -101,16 +88,12 @@ $query_busca = mysqli_query($conn, $cuidador);
                                 <?php echo "Zona de atuação: " . $row_usuario['zona'] . "."; ?></h3>
                         <?php } ?>
                     </div>
-
                 </div>
-
                 <div class="sobre">
                     <section>
                         <h2 style="margin-left: -30px">Sobre</h2>
                         <?php echo "<p> " . $row_usuario['descSobre'] . "</p>" ?>
                     </section>
-
-
                 </div>
                 <div class="sobre">
                     <section>
@@ -118,9 +101,8 @@ $query_busca = mysqli_query($conn, $cuidador);
                         <?php echo "<p>" . $row_usuario['descForm'] . "</p>" ?>
                     </section>
                 </div>
-
                 <?php if ($row_usuario['cep'] == NULL) { ?>
-                    
+
                     <script>
                         $(document).ready(function() {
                             $('#msgcad').modal('show');
@@ -145,17 +127,13 @@ $query_busca = mysqli_query($conn, $cuidador);
                             </div>
                         </div>
                     </div>
-                    
-                    <?php } ?>
-
+                <?php } ?>
                 <div class="sobre">
                     <section>
                         <h2 style="margin-left: -30px">Experiencias</h2>
                         <?php echo "<p>" . $row_usuario['descExp'] . "</p>" ?>
                     </section>
-
                 </div>
-
                 <?php if (($row_usuario['site'] != NULL) || ($row_usuario['facebook'] != NULL) || ($row_usuario['instagram'] != NULL)) { ?>
                     <div class="sobre">
                         <section>
@@ -165,13 +143,11 @@ $query_busca = mysqli_query($conn, $cuidador);
                             } else {
                                 echo "<p> type='hidden'></p>";
                             } ?>
-
                             <?php if ($row_usuario['instagram'] != NULL) {
                                 echo "<p>Meu Instagram: " . $row_usuario['instagram'] . "</p>";
                             } else {
                                 echo "<p> type='hidden'></p '>";
                             } ?>
-
                             <?php if ($row_usuario['facebook'] != NULL) {
                                 echo "<p padding-bottom: 20px; margin-bottom: 20px;>Meu Facebook: " . $row_usuario['facebook'] . "</p>";
                             } else {
