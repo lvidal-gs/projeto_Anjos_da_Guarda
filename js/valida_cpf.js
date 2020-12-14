@@ -1,10 +1,18 @@
+document.getElementById("cpf").addEventListener("change", validacao);
+
 function validacao(){
-	if(valida_cpf(document.getElementById('cpf').value))
+	var ele = document.getElementById("erro");
+	if(valida_cpf(document.getElementById('cpf').value)){
+		ele.style.display = "none";
 		return true;
-	
-	else
-		alert('CPF Inválido');
-		form.cpf.focus();
+	}
+
+	else{
+		ele.style.display = "block"
+		ele.innerHTML = "Coloque um cpf válido!"
+		form.erro.focus();
+		return false;
+}
 }
 
 function valida_cpf(cpf){

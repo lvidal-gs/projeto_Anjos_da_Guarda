@@ -7,7 +7,9 @@ if ($btnCadastro) {
     include_once 'conexao.php';
     $escolha = filter_input(INPUT_POST, 'tipo-cadastro', FILTER_SANITIZE_STRING);
     $dados = filter_input_array(INPUT_POST, FILTER_DEFAULT);
-    $dados['senha'] = password_hash($dados['senha'], PASSWORD_DEFAULT); //CRIPTOGRAFA A A SENHA
+    $dados['senha'] = password_hash($dados['senha'], PASSWORD_DEFAULT); //Cria um array
+
+    //Dados que nao entraram no array e devem ser sanitizados a parte
     $sexo = filter_input(INPUT_POST, 'sexo', FILTER_SANITIZE_STRING);
     $data = $_POST['data'];
     $data = date("Y-m-d", strtotime(str_replace('/', '-', $data)));
@@ -59,8 +61,9 @@ if ($btnCadastro) {
                 now(),
                 NULL,
                 DEFAULT)";
-                
+
                 $query_usuario = mysqli_query($conn, $usuario);
+
                 if (mysqli_insert_id($conn)) {
                     header("Location: sucessoCuidador.php");
                 } else {
@@ -111,8 +114,9 @@ if ($btnCadastro) {
                 DEFAULT,
                 now(),
                 NULL)";
-                
+
                 $query_usuario = mysqli_query($conn, $usuario);
+
 
                 if (mysqli_insert_id($conn)) {
                     header("Location: sucessoCliente.php");
@@ -135,7 +139,7 @@ if ($btnCadastro) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="img/anjos_da_guarda_logo_favicon.png" />
 
-    
+
     <link rel="stylesheet" href="css/styles.css">
 
     <script type="text/javascript" src="js/validaform.js"></script>
@@ -165,6 +169,7 @@ if ($btnCadastro) {
         <form name=form method="POST" action="">
 
             <h1>Cadastre-se na nossa plataforma!</h1>
+
             <?php
             if (isset($_SESSION['msg'])) {
                 echo $_SESSION['msg'];
@@ -190,7 +195,7 @@ if ($btnCadastro) {
                     <div class="cntr">
 
                         <label for="op1" class="radio" required>
-                            <input checked type="radio" name="tipo-cadastro" id="op1" class="hidden" value="P" />
+                            <input type="radio" name="tipo-cadastro" id="op1" class="hidden" value="P" />
                             <span class="label"></span>Profissional - Cuidador
                         </label>
 
@@ -215,7 +220,7 @@ if ($btnCadastro) {
 
                 <div class="field">
                     <label for="email">E-mail *</label>
-                    <input type="text" name="email" maxlength="50" minlength="8" placeholder="Insira seu melhor e-mail" required>
+                    <input type="email" name="email" maxlength="50" minlength="8" placeholder="Insira seu melhor e-mail" required>
                 </div>
 
                 <div class="field">
@@ -223,7 +228,7 @@ if ($btnCadastro) {
                     <div class="cntr">
 
                         <label for="opt1" class="radio" required>
-                            <input checked type="radio" name="sexo" id="opt1" class="hidden" value="M" />
+                            <input type="radio" name="sexo" id="opt1" class="hidden" value="M" />
                             <span class="label"></span>Masculino
                         </label>
 
@@ -246,22 +251,27 @@ if ($btnCadastro) {
                 <div class="field-group">
                     <div class="field">
                         <label for="data">Data de Nascimento *</label>
-                        <input type="date" name="data" placeholder="" required>
+                        <input type="date" max="31/12/2020" name="data" onkeyup="somenteNumeros(this);" required>
                     </div>
                     <div class="field">
                         <label for="CPF">CPF * <t style="font-size: 8pt;">(somente números)</t></label>
-                        <input type="text" id="cpf" name="cpf" minlenght="1" maxlength="11" placeholder="Insira seu CPF" onchange="validacao()" required>
+                        <input type="text" id="cpf" name="cpf" minlenght="1" maxlength="11" placeholder="Insira seu CPF" onchange="validacao()" onkeyup="somenteNumeros(this);" required>
+                        <div id="erro" style="display: none; background: #FFC7CE; border-width: 0.5px; border-style: solid;
+        border-color: #7A0006; border-radius: 3px; color: #7A0006; padding: 8px 8px 8px 12px; margin-top:20px; margin-bottom: -30px"></div>
                     </div>
                 </div>
 
                 <div class="field">
                     <label for="whatsapp">Tel. Whatsapp (DDD)+(Tel.) * <t style="font-size: 8pt;">(somente números)</t></label>
-                    <input type="text" name="telefone" maxlength="11" minlength="9" placeholder="Insira o seu número de WhatsApp" required>
+                    <input type="tel" name="telefone" maxlength="11" minlength="9" placeholder="Insira o seu número de WhatsApp" onkeyup="somenteNumeros(this);" required>
                 </div>
+
+                
                 <div class="field-group">
                     <div class="field">
                         <label for="senha">Digite sua senha * <t style="font-size: 8pt;">(min. 6 caract.)</t></label>
                         <input type="password" name="senha" minlength="6" placeholder="Insira uma senha" required>
+                        
                     </div>
 
                     <div class="field">
@@ -269,6 +279,8 @@ if ($btnCadastro) {
                         <input type="password" name="senha_confirma" minlength="6" placeholder="Insira sua senha novamente" required>
                     </div>
                 </div>
+                <div id="errosenha" style="display: none; background: #FFC7CE; border-width: 0.5px; border-style: solid;
+        border-color: #7A0006; border-radius: 3px; color: #7A0006; padding: 8px 8px 8px 12px; margin-bottom: 10px;"></div>
             </fieldset>
 
             <p class="sublink">Já é cadastrado? <a href="login.php">Clique aqui</a>.</p>
@@ -279,8 +291,16 @@ if ($btnCadastro) {
                 Ao clicar em “Cadastrar-se”, você aceita os Termos de Uso da Anjos da Guarda e confirma que leu a Política de Privacidade. Você também concorda em receber mensagens em seu e-mail, inclusive automáticas, provenientes da companhia e de suas afiliadas para fins informativos e/ou de marketing, no número que informou. A aceitação do recebimento de mensagens de marketing não é condição para usar os serviços da Anjos da Guarda. Você compreende que, para cancelar o recebimento, pode cancelá-los via e-mail.
 
     </div>
-
-
+    <script>
+        function somenteNumeros(num) {
+            var er = /[^0-9-./]/;
+            er.lastIndex = 0;
+            var campo = num;
+            if (er.test(campo.value)) {
+                campo.value = "";
+            }
+        }
+    </script>
     </form>
 </body>
 </div>

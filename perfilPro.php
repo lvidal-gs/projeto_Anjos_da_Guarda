@@ -141,17 +141,17 @@ $query_busca = mysqli_query($conn, $cuidador);
                             <?php if ($row_usuario['site'] != NULL) {
                                 echo "<p>Meu Site: " . $row_usuario['site'] . "</p>";
                             } else {
-                                echo "<p> type='hidden'></p>";
+                                echo "<p type='hidden'></p>";
                             } ?>
                             <?php if ($row_usuario['instagram'] != NULL) {
                                 echo "<p>Meu Instagram: " . $row_usuario['instagram'] . "</p>";
                             } else {
-                                echo "<p> type='hidden'></p '>";
+                                echo "<p type='hidden'></p>";
                             } ?>
                             <?php if ($row_usuario['facebook'] != NULL) {
                                 echo "<p padding-bottom: 20px; margin-bottom: 20px;>Meu Facebook: " . $row_usuario['facebook'] . "</p>";
                             } else {
-                                echo "<p> type='hidden'></p>>";
+                                echo "<p type='hidden'></p>";
                             } ?>
                         </section>
                     </div>
